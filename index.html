@@ -79,50 +79,52 @@
             </div>
         </div>
     </section>
-<footer id="contato">
-    <div class="container">
-        <h2>Vamos conversar?</h2>
-        <p>Atendimento online para todo o mundo.</p>
-        <p class="copyright">Vivian Alves - Psicóloga Clínica | CRP 10/09546</p>
-        <p class="copyright"> </p>
-        <div class="social-links">
-            <a href="#">WhatsApp</a>
-            
-            <a href="https://www.instagram.com/psi.vivianalves?igsh=N2k4aHFwem1oNDlq" 
-               target="_blank" 
-               rel="noopener noreferrer">
-               Instagram (@psi.vivianalves)
-            </a>
+    
+    <footer id="contato">
+        <div class="container">
+            <h2>Vamos conversar?</h2>
+            <p>Atendimento online para todo o mundo.</p>
+            <p class="copyright">Vivian Alves - Psicóloga Clínica | CRP 10/09546</p>
+            <p class="copyright"> </p>
+            <div class="social-links">
+                <a href="#">WhatsApp</a>
+                
+                <a href="https://www.instagram.com/psi.vivianalves?igsh=N2k4aHFwem1oNDlq" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                   Instagram
+                </a>
+            </div>
         </div>
-    </div>
-</footer>
-<script>
-    // Animação de entrada das seções
-    document.addEventListener('DOMContentLoaded', function() {
-        const sections = document.querySelectorAll('section');
-        
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+    </footer>
+    
+    <script>
+        // Animação de entrada das seções
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                observer.observe(section);
             });
-        }, observerOptions);
-        
-        sections.forEach(section => {
-            observer.observe(section);
+            
+            // Adiciona um pequeno atraso para a primeira seção (hero) aparecer
+            setTimeout(() => {
+                document.querySelector('.hero').classList.add('visible');
+            }, 300);
         });
-        
-        // Adiciona um pequeno atraso para a primeira seção (hero) aparecer
-        setTimeout(() => {
-            document.querySelector('.hero').classList.add('visible');
-        }, 300);
-    });
-</script>
+    </script>
 </body>
 </html>
