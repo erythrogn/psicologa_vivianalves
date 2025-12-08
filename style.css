@@ -38,14 +38,12 @@ body {
     overflow-x: hidden;
 }
 
-/* Títulos e Nome com a fonte da marca */
 h1, h2, .logo-text {
     font-family: 'Tan Pearl', serif;
     font-weight: normal;
     letter-spacing: 0.5px;
 }
 
-/* Header com efeito de vidro */
 header {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 15px 0;
@@ -72,7 +70,6 @@ nav {
     padding: 0 20px;
 }
 
-/* Estilo para o Logo (Imagem + Texto) com animação */
 .brand {
     display: flex;
     align-items: center;
@@ -114,7 +111,6 @@ nav {
     transition: var(--transicao-padrao);
 }
 
-/* Menu Links com animação */
 nav ul {
     list-style: none;
     display: flex;
@@ -182,7 +178,6 @@ nav a:not(.btn-contato):hover {
     left: 100%;
 }
 
-/* Hero Section com animações */
 .hero {
     background-color: var(--azul-claro);
     text-align: center;
@@ -299,7 +294,6 @@ nav a:not(.btn-contato):hover {
     width: 100%;
 }
 
-/* Seção Sobre Mim com imagem de fundo */
 #sobre {
     position: relative;
     overflow: hidden;
@@ -312,20 +306,15 @@ nav a:not(.btn-contato):hover {
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* --- ALTERAÇÃO AQUI --- */
     background-image: url('mao_com_flores.svg');
-    /* ---------------------- */
-    
-    background-size: cover; /* Cobre toda a área. Mude para 'contain' se quiser ver a imagem inteira sem cortes */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.15; /* Mantém a imagem suave para não atrapalhar o texto */
+    opacity: 0.15;
     z-index: 0;
-    filter: blur(0.5px); /* Um leve desfoque para suavizar */
+    filter: blur(0.5px);
 }
 
-/* Container e Cards */
 .container { 
     max-width: 1000px; 
     margin: 0 auto; 
@@ -470,7 +459,6 @@ nav a:not(.btn-contato):hover {
     font-size: 1.3rem;
 }
 
-/* Footer */
 footer { 
     background-color: var(--bege); 
     color: var(--branco); 
@@ -540,7 +528,6 @@ footer p {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
@@ -588,7 +575,6 @@ footer p {
     }
 }
 
-/* Animações de entrada para as seções */
 section {
     opacity: 0;
     transform: translateY(30px);
@@ -600,7 +586,6 @@ section.visible {
     transform: translateY(0);
 }
 
-/* Estilização da barra de rolagem */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -616,4 +601,196 @@ section.visible {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--azul-escuro);
+}
+.sobre-page .sobre-hero {
+    background-color: var(--azul-claro);
+    text-align: center;
+    padding: 100px 20px 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sobre-page .sobre-hero h1 {
+    color: var(--azul-escuro);
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.sobre-page .sobre-intro {
+    font-size: 1.3rem;
+    color: var(--azul-escuro);
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.sobre-conteudo {
+    position: relative;
+    overflow: hidden;
+}
+
+.sobre-conteudo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('mao_com_flores.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 0;
+    filter: blur(0.5px);
+}
+
+.sobre-conteudo .container {
+    position: relative;
+    z-index: 1;
+}
+
+.sobre-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 60px 0;
+}
+
+.sobre-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 30px;
+    border-radius: 20px;
+    border: 1px solid var(--menta);
+    box-shadow: 0 8px 20px var(--sombra-suave);
+    transition: var(--transicao-padrao);
+    text-align: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.sobre-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px var(--sombra-media);
+    border-color: var(--lilas);
+}
+
+.sobre-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.sobre-card h3 {
+    color: var(--azul-escuro);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.missao-visao {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin: 80px 0;
+}
+
+.missao, .visao {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px 40px;
+    border-radius: 20px;
+    border: 1px solid var(--menta);
+    box-shadow: 0 8px 20px var(--sombra-suave);
+    transition: var(--transicao-padrao);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.missao:hover, .visao:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px var(--sombra-media);
+}
+
+.missao h2, .visao h2 {
+    color: var(--azul-escuro);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.missao h2:after, .visao h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--lilas);
+    border-radius: 2px;
+}
+
+.missao p, .visao p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--texto-base);
+}
+
+.sobre-texto {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px 40px;
+    border-radius: 20px;
+    border: 1px solid var(--menta);
+    box-shadow: 0 8px 20px var(--sombra-suave);
+    margin: 80px 0 40px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.sobre-texto h2 {
+    color: var(--azul-escuro);
+    font-size: 2rem;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.sobre-texto h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--lilas);
+    border-radius: 2px;
+}
+
+.sobre-texto p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--texto-base);
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .sobre-page .sobre-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .sobre-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .missao-visao {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .missao, .visao {
+        padding: 40px 30px;
+    }
+    
+    .sobre-texto {
+        padding: 40px 30px;
+    }
 }

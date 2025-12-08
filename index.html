@@ -12,26 +12,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
-        <nav>
-            <a href="#" class="brand">
-                <img src="cerebro_vivian_alves.svg" alt="Logo Cérebro Florescendo" class="logo-img">
-                <div>
-                    <span class="logo-text">Vivian Alves</span>
-                    <span class="logo-sub">Psicóloga Clínica</span>
-                </div>
-            </a>
-
-            <ul>
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#servicos">Atendimentos</a></li>
-                <li><a href="#contato" class="btn-contato">Fale Comigo</a></li>
-            </ul>
-        </nav>
-    </header>
-    
+    <!-- Header reutilizável -->
+    <site-header></site-header>
 
     <section id="inicio" class="hero">
         <img src="cerebro_vivian_alves.svg" alt="Cérebro Florescendo" class="hero-logo">
@@ -43,17 +25,14 @@
         </div>
     </section>
 
-    <section id="sobre" class="container">
-        <h2>Sobre Mim</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <h3>Missão</h3>
-                <p>Ajudar a compreender emoções, comportamentos e padrões, promovendo equilíbrio e significado por meio de um atendimento humanizado e personalizado.</p>
-            </div>
-            <div class="card">
-                <h3>Visão</h3>
-                <p>Ser referência no desenvolvimento do autoconhecimento e bem-estar emocional, proporcionando transformação e leveza na vida das pessoas.</p>
-            </div>
+    <section class="sobre-resumo bg-color">
+        <div class="container">
+            <h2>Sobre Mim</h2>
+            <p class="intro-text">
+                Psicóloga clínica com especialização em Terapia Cognitivo-Comportamental, 
+                focada em ajudar pessoas a encontrarem equilíbrio emocional e propósito.
+            </p>
+            <a href="sobre.html" class="cta-button">Conheça Minha Trajetória</a>
         </div>
     </section>
 
@@ -80,34 +59,17 @@
         </div>
     </section>
     
-    <footer id="contato">
-        <div class="container">
-            <h2>Vamos conversar?</h2>
-            <p>Atendimento online para todo o mundo.</p>
-            <p class="copyright">Vivian Alves - Psicóloga Clínica | CRP 10/09546</p>
-            <p class="copyright"> </p>
-            <div class="social-links">
-                <a href="#">WhatsApp</a>
-                
-                <a href="https://www.instagram.com/psi.vivianalves?igsh=N2k4aHFwem1oNDlq" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
-                   Instagram
-                </a>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer reutilizável -->
+    <site-footer></site-footer>
+    
+    <!-- Inclua os scripts dos componentes -->
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
     
     <script>
-        // Animação de entrada das seções
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('section');
-            
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -115,15 +77,8 @@
                     }
                 });
             }, observerOptions);
-            
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-            
-            // Adiciona um pequeno atraso para a primeira seção (hero) aparecer
-            setTimeout(() => {
-                document.querySelector('.hero').classList.add('visible');
-            }, 300);
+            sections.forEach(section => { observer.observe(section); });
+            setTimeout(() => { document.querySelector('.hero').classList.add('visible'); }, 300);
         });
     </script>
 </body>

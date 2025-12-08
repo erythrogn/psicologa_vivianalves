@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mim | Vivian Alves - Psicóloga Clínica</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header reutilizável -->
+    <site-header></site-header>
+
+    <main class="sobre-page">
+        <section class="sobre-hero">
+            <div class="container">
+                <h1>Sobre Mim</h1>
+                <p class="sobre-intro">Conheça mais sobre minha trajetória, formação e abordagem terapêutica</p>
+            </div>
+        </section>
+
+        <section class="sobre-conteudo">
+            <div class="container">
+                <div class="sobre-grid">
+                    <div class="sobre-card">
+                        <div class="sobre-icon">🎓</div>
+                        <h3>Formação</h3>
+                        <p>Graduada em Psicologia com especialização em Psicologia Clínica e Terapias Cognitivo-Comportamentais. CRP 10/09546</p>
+                    </div>
+                    
+                    <div class="sobre-card">
+                        <div class="sobre-icon">💭</div>
+                        <h3>Abordagem</h3>
+                        <p>Trabalho com uma abordagem integrativa, combinando técnicas da Terapia Cognitivo-Comportamental (TCC) com elementos humanistas.</p>
+                    </div>
+                    
+                    <div class="sobre-card">
+                        <div class="sobre-icon">❤️</div>
+                        <h3>Experiência</h3>
+                        <p>Mais de 8 anos de experiência clínica, atuando com adultos e adolescentes em processos terapêuticos focados no autoconhecimento.</p>
+                    </div>
+                </div>
+
+                <div class="missao-visao">
+                    <div class="missao">
+                        <h2>Missão</h2>
+                        <p>Ajudar a compreender emoções, comportamentos e padrões, promovendo equilíbrio e significado por meio de um atendimento humanizado e personalizado.</p>
+                    </div>
+                    
+                    <div class="visao">
+                        <h2>Visão</h2>
+                        <p>Ser referência no desenvolvimento do autoconhecimento e bem-estar emocional, proporcionando transformação e leveza na vida das pessoas.</p>
+                    </div>
+                </div>
+
+                <div class="sobre-texto">
+                    <h2>Minha Filosofia de Trabalho</h2>
+                    <p>Acredito que cada pessoa é única e merece um espaço seguro para explorar suas emoções, pensamentos e comportamentos.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer reutilizável -->
+    <site-footer></site-footer>
+    
+    <!-- Inclua os scripts dos componentes -->
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            sections.forEach(section => { observer.observe(section); });
+        });
+    </script>
+</body>
+</html>
