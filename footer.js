@@ -10,7 +10,7 @@ class FooterComponent extends HTMLElement {
                 <p class="copyright">Vivian Alves - Psicóloga Clínica | CRP 10/09546</p>
                 <p class="copyright"> </p>
                 <div class="social-links">
-                    <a href="#">WhatsApp</a>
+                    <a href="https://wa.me/5594984272294"target="_blank" rel="noopener noreferrer">WhatsApp</a>
                     <a href="https://www.instagram.com/psi.vivianalves?igsh=N2k4aHFwem1oNDlq" target="_blank" rel="noopener noreferrer">Instagram</a>
                 </div>
             </div>
