@@ -22,7 +22,30 @@ class HeaderComponent extends HTMLElement {
             </nav>
         </header>
         `;
+        setTimeout(() => {
+            this.querySelectorAll('nav a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    // Se for um link âncora (#), prevenir comportamento padrão
+                    if(href.includes('#')) {
+                        e.preventDefault();
+                        const targetId = href.split('#')[1];
+                        const targetElement = document.getElementById(targetId);
+                        if(targetElement) {
+                            const headerHeight = document.querySelector('header').offsetHeight;
+                            const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        }, 100);
     }
+
+    
 }
 
 customElements.define('site-header', HeaderComponent);
