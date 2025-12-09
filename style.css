@@ -1,9 +1,13 @@
 @font-face {
     font-family: 'Tan Pearl';
     src: url('tan-pearl.otf') format('opentype');
+    src: url('tan-pearl.otf') format('opentype'),
+         url('tan-pearl.ttf') format('truetype'),
+         url('tan-pearl.woff') format('woff'),
+         url('tan-pearl.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-    font-display: swap; /* Melhora performance de carregamento */
+    font-display: swap;
 }
 
 :root {
@@ -17,9 +21,9 @@
     --texto-base: #555;
     --sombra-suave: rgba(0, 0, 0, 0.08);
     --sombra-media: rgba(0, 0, 0, 0.12);
-    --sombra-forte: rgba(0, 0, 0, 0.18); /* Adicionei uma nova variável */
+    --sombra-forte: rgba(0, 0, 0, 0.18);
     --transicao-padrao: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-    --transicao-rapida: all 0.25s ease; /* Para transições mais rápidas */
+    --transicao-rapida: all 0.25s ease;
 }
 
 * {
@@ -33,33 +37,39 @@ html {
     scroll-padding-top: 80px;
 }
 
+@supports not (scroll-behavior: smooth) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: var(--texto-base);
     line-height: 1.6;
     overflow-x: hidden;
-    -webkit-font-smoothing: antialiased; /* Melhora suavização de fontes */
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, .logo-text {
-    font-family: 'Tan Pearl', serif;
+    font-family: 'Tan Pearl', Georgia, 'Times New Roman', serif;
     font-weight: normal;
     letter-spacing: 0.5px;
 }
 
-/* Melhorias no header */
 header {
-    background-color: rgba(255, 255, 255, 0.98); /* Aumentei a opacidade */
-    padding: 12px 0; /* Reduzi um pouco o padding */
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 12px 0;
     box-shadow: 0 2px 15px var(--sombra-suave);
     position: sticky;
+    position: -webkit-sticky;
     top: 0;
     z-index: 1000;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     animation: headerFadeIn 0.5s ease-out;
-    will-change: transform; /* Melhora performance de animação */
+    will-change: transform;
 }
 
 @keyframes headerFadeIn {
@@ -77,9 +87,9 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* Aumentei um pouco */
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px; /* Aumentei o padding lateral */
+    padding: 0 24px;
 }
 
 .brand {
@@ -92,7 +102,7 @@ nav {
 }
 
 .brand:hover {
-    transform: scale(1.02); /* Reduzi o efeito de escala */
+    transform: scale(1.02);
 }
 
 .logo-img {
@@ -103,7 +113,7 @@ nav {
 }
 
 .brand:hover .logo-img {
-    transform: rotate(-3deg) scale(1.03); /* Efeito mais sutil */
+    transform: rotate(-3deg) scale(1.03);
 }
 
 .logo-text {
@@ -126,13 +136,13 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 28px; /* Aumentei o gap */
+    gap: 28px;
 }
 
 nav a {
     text-decoration: none;
     color: var(--roxo-escuro);
-    font-weight: 600; /* Aumentei o peso da fonte */
+    font-weight: 600;
     font-size: 0.95rem;
     position: relative;
     padding: 6px 0;
@@ -162,7 +172,6 @@ nav a:not(.btn-contato):focus {
     outline: none;
 }
 
-/* Melhorias no botão de contato */
 .btn-contato {
     background-color: var(--lilas);
     color: var(--branco) !important;
@@ -201,29 +210,35 @@ nav a:not(.btn-contato):focus {
     left: 100%;
 }
 
-/* Melhorias na hero section */
 .hero {
-    background: linear-gradient(135deg, var(--azul-claro) 0%, #9fbde9 100%); /* Adicionei gradiente */
+    background: linear-gradient(135deg, var(--azul-claro) 0%, #9fbde9 100%);
     text-align: center;
-    padding: 100px 20px; /* Aumentei o padding */
+    padding: 100px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
     overflow: hidden;
-    min-height: 85vh; /* Altura mínima maior */
+    min-height: 85vh;
+}
+
+@media (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .hero {
+        background: var(--azul-claro);
+    }
 }
 
 .hero::before {
     content: '';
     position: absolute;
-    width: 400px; /* Aumentei o tamanho */
+    width: 400px;
     height: 400px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
     top: -200px;
     right: -200px;
     animation: float 25s infinite ease-in-out;
+    will-change: transform;
 }
 
 .hero::after {
@@ -236,6 +251,7 @@ nav a:not(.btn-contato):focus {
     bottom: -125px;
     left: -125px;
     animation: float 20s infinite ease-in-out reverse;
+    will-change: transform;
 }
 
 @keyframes float {
@@ -251,7 +267,7 @@ nav a:not(.btn-contato):focus {
 }
 
 .hero-logo {
-    width: 160px; /* Aumentei um pouco */
+    width: 160px;
     margin-bottom: 25px;
     opacity: 0.95;
     animation: logoFloat 5s ease-in-out infinite;
@@ -271,7 +287,7 @@ nav a:not(.btn-contato):focus {
 .hero-content {
     z-index: 2;
     animation: contentFadeIn 0.8s ease-out 0.2s both;
-    max-width: 700px; /* Limitei a largura */
+    max-width: 700px;
 }
 
 @keyframes contentFadeIn {
@@ -287,7 +303,7 @@ nav a:not(.btn-contato):focus {
 
 .hero h1 {
     color: var(--azul-escuro);
-    font-size: 3.2rem; /* Ajustei o tamanho */
+    font-size: 3.2rem;
     margin-bottom: 15px;
     text-shadow: 0 3px 15px rgba(63, 70, 143, 0.15);
     line-height: 1.2;
@@ -298,12 +314,12 @@ nav a:not(.btn-contato):focus {
     color: var(--branco);
     margin-bottom: 35px;
     max-width: 650px;
-    font-weight: 300; /* Mais fino para contraste */
+    font-weight: 300;
 }
 
-/* Melhorias no CTA */
 .cta-button {
-    background: linear-gradient(135deg, var(--azul-escuro) 0%, #35408a 100%); /* Gradiente */
+    background-color: var(--azul-escuro);
+    background: linear-gradient(135deg, var(--azul-escuro) 0%, #35408a 100%);
     color: var(--branco);
     padding: 16px 40px;
     text-decoration: none;
@@ -345,7 +361,6 @@ nav a:not(.btn-contato):focus {
     width: 100%;
 }
 
-/* Seção Sobre */
 #sobre {
     position: relative;
     overflow: hidden;
@@ -358,61 +373,42 @@ nav a:not(.btn-contato):focus {
     left: 0;
     width: 100%;
     height: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
     background-image: url('mao_com_flores.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.12; /* Aumentei a opacidade */
+    opacity: 0.12;
     z-index: 0;
     filter: blur(0.8px);
 }
 
-/* Container e Cards */
-.container { 
-    max-width: 1100px; /* Aumentei um pouco */
-    margin: 0 auto; 
-    padding: 90px 24px; /* Aumentei padding */
-    text-align: center; 
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 90px 24px;
+    text-align: center;
     position: relative;
+    z-index: 2;
 }
 
-.container h2 {
-    color: var(--azul-escuro);
-    font-size: 2.4rem; /* Aumentei */
-    margin-bottom: 25px;
-    position: relative;
-    display: inline-block;
-}
-
-.container h2::after {
-    content: '';
-    position: absolute;
-    bottom: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--lilas), var(--azul-claro));
-    border-radius: 2px;
-}
-
-.cards-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Mais responsivo */
-    gap: 35px; 
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 35px;
     margin-top: 50px;
 }
 
-.card { 
-    background: rgba(255, 255, 255, 0.98); 
-    padding: 45px 35px; 
-    border-radius: 22px; 
+.card {
+    background: rgba(255, 255, 255, 0.98);
+    padding: 45px 35px;
+    border-radius: 22px;
     border: 1px solid rgba(196, 235, 230, 0.5);
     box-shadow: 0 10px 30px var(--sombra-suave);
     transition: var(--transicao-padrao);
     position: relative;
     overflow: hidden;
-    z-index: 1;
+    z-index: 2;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -434,10 +430,30 @@ nav a:not(.btn-contato):focus {
     border-color: var(--lilas);
 }
 
-.card h3 { 
-    color: var(--azul-escuro); 
-    margin-bottom: 20px; 
-    font-family: 'Quicksand', sans-serif; 
+.container h2 {
+    color: var(--azul-escuro);
+    font-size: 2.4rem;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--lilas), var(--azul-claro));
+    border-radius: 2px;
+}
+
+.card h3 {
+    color: var(--azul-escuro);
+    margin-bottom: 20px;
+    font-family: 'Quicksand', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
     transition: var(--transicao-padrao);
@@ -452,11 +468,16 @@ nav a:not(.btn-contato):focus {
     line-height: 1.7;
 }
 
-/* Seção com fundo colorido */
-.bg-color { 
-    background: linear-gradient(135deg, var(--menta) 0%, #b3e0db 100%); /* Gradiente */
+.bg-color {
+    background: linear-gradient(135deg, var(--menta) 0%, #b3e0db 100%);
     position: relative;
     overflow: hidden;
+}
+
+@media (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .bg-color {
+        background: var(--menta);
+    }
 }
 
 .bg-color::before {
@@ -473,7 +494,7 @@ nav a:not(.btn-contato):focus {
 
 .bg-color .container {
     position: relative;
-    z-index: 1;
+    z-index: 3;
 }
 
 .intro-text {
@@ -486,17 +507,17 @@ nav a:not(.btn-contato):focus {
     line-height: 1.7;
 }
 
-.features { 
+.features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 35px; 
-    margin-top: 50px; 
+    gap: 35px;
+    margin-top: 50px;
 }
 
-.feature-item { 
-    background: rgba(255, 255, 255, 0.95); 
-    padding: 35px 30px; 
-    border-radius: 18px; 
+.feature-item {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 35px 30px;
+    border-radius: 18px;
     min-height: 220px;
     box-shadow: 0 10px 30px var(--sombra-suave);
     transition: var(--transicao-padrao);
@@ -506,6 +527,8 @@ nav a:not(.btn-contato):focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    z-index: 2;
 }
 
 .feature-item:hover {
@@ -525,14 +548,19 @@ nav a:not(.btn-contato):focus {
     line-height: 1.7;
 }
 
-/* Footer melhorado */
-footer { 
-    background: linear-gradient(135deg, var(--bege) 0%, #a89786 100%); /* Gradiente */
-    color: var(--branco); 
-    text-align: center; 
-    padding: 70px 0 50px; 
+footer {
+    background: linear-gradient(135deg, var(--bege) 0%, #a89786 100%);
+    color: var(--branco);
+    text-align: center;
+    padding: 70px 0 50px;
     position: relative;
     overflow: hidden;
+}
+
+@media (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    footer {
+        background: var(--bege);
+    }
 }
 
 footer::before {
@@ -583,8 +611,8 @@ footer p {
     z-index: 1;
 }
 
-.social-links { 
-    margin-top: 35px; 
+.social-links {
+    margin-top: 35px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -593,12 +621,12 @@ footer p {
     z-index: 1;
 }
 
-.social-links a { 
-    color: var(--azul-escuro); 
-    background: var(--branco); 
-    padding: 14px 32px; 
-    text-decoration: none; 
-    border-radius: 25px; 
+.social-links a {
+    color: var(--azul-escuro);
+    background: var(--branco);
+    padding: 14px 32px;
+    text-decoration: none;
+    border-radius: 25px;
     font-weight: 700;
     transition: var(--transicao-padrao);
     border: 2px solid transparent;
@@ -619,11 +647,10 @@ footer p {
     outline: none;
 }
 
-/* Animações de entrada otimizadas */
 section {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
 }
@@ -633,7 +660,6 @@ section.visible {
     transform: translateY(0);
 }
 
-/* Barra de rolagem melhorada */
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -653,7 +679,6 @@ section.visible {
     background: linear-gradient(135deg, var(--azul-escuro), var(--roxo-escuro));
 }
 
-/* Estilos para a página Sobre - Otimizados */
 .sobre-page .sobre-hero {
     background: linear-gradient(135deg, var(--azul-claro) 0%, #9fbde9 100%);
     text-align: center;
@@ -694,6 +719,7 @@ section.visible {
     left: 0;
     width: 100%;
     height: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
     background-image: url('mao_com_flores.svg');
     background-size: cover;
     background-position: center;
@@ -705,7 +731,7 @@ section.visible {
 
 .sobre-conteudo .container {
     position: relative;
-    z-index: 1;
+    z-index: 3;
 }
 
 .sobre-grid {
@@ -730,6 +756,8 @@ section.visible {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 2;
 }
 
 .sobre-card:hover {
@@ -773,6 +801,8 @@ section.visible {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     text-align: left;
+    position: relative;
+    z-index: 2;
 }
 
 .missao:hover, .visao:hover {
@@ -816,6 +846,8 @@ section.visible {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     text-align: left;
+    position: relative;
+    z-index: 2;
 }
 
 .sobre-texto h2 {
@@ -844,7 +876,6 @@ section.visible {
     margin-bottom: 25px;
 }
 
-/* Media Queries otimizadas */
 @media (max-width: 992px) {
     .hero h1 {
         font-size: 2.8rem;
@@ -868,14 +899,27 @@ section.visible {
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
         padding: 15px 20px;
     }
     
     nav ul {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 15px;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    nav li {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+    }
+    
+    .btn-contato {
+        margin-top: 10px;
+        width: 100%;
+        max-width: 200px;
     }
     
     .hero {
@@ -915,7 +959,6 @@ section.visible {
         margin: 5px 0;
     }
     
-    /* Página Sobre responsiva */
     .sobre-page .sobre-hero h1 {
         font-size: 2.8rem;
     }
@@ -969,7 +1012,6 @@ section.visible {
     }
 }
 
-/* Melhorias de acessibilidade */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -978,9 +1020,19 @@ section.visible {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+    
+    .hero::before,
+    .hero::after,
+    .hero-logo,
+    .card,
+    .feature-item,
+    .sobre-card,
+    .missao,
+    .visao {
+        animation: none !important;
+    }
 }
 
-/* Melhorias para modo escuro (opcional) */
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #1a1a1a;
@@ -996,4 +1048,25 @@ section.visible {
     .card h3, .feature-item h3, .sobre-card h3, .missao h2, .visao h2, .sobre-texto h2 {
         color: var(--azul-claro);
     }
+}
+
+/* Melhorar acessibilidade do foco */
+a:focus,
+button:focus,
+.btn-contato:focus,
+.cta-button:focus,
+.social-links a:focus {
+    outline: 3px solid var(--lilas);
+    outline-offset: 3px;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--lilas);
+    outline-offset: 3px;
 }
