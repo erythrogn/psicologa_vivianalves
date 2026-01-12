@@ -1,7 +1,27 @@
-
 class HeaderComponent extends HTMLElement {
     constructor() {
         super();
+        
+        // --- 1. Lógica para definir a saudação (Bom dia/tarde/noite) ---
+        const horaAtual = new Date().getHours();
+        let saudacao;
+
+        // Regra: 5h às 11:59 (Bom dia) | 12h às 17:59 (Boa tarde) | 18h às 4:59 (Boa noite)
+        if (horaAtual >= 5 && horaAtual < 12) {
+            saudacao = "bom dia";
+        } else if (horaAtual >= 12 && horaAtual < 18) {
+            saudacao = "boa tarde";
+        } else {
+            saudacao = "boa noite";
+        }
+
+        // --- 2. Monta a mensagem completa ---
+        const mensagemTexto = `Olá, Viviana, ${saudacao}. Espero que esteja bem. Estou procurando por acompanhamento psicológico e gostaria de agendar uma sessão de acolhimento. Qual é a melhor forma de proceder?`;
+
+        // --- 3. Codifica para URL (transforma espaços em %20, acentos, etc) ---
+        const mensagemCodificada = encodeURIComponent(mensagemTexto);
+
+        // --- 4. Renderiza o HTML usando a variável mensagemCodificada ---
         this.innerHTML = `
         <header>
             <nav>
@@ -17,16 +37,24 @@ class HeaderComponent extends HTMLElement {
                     <li><a href="index.html">Início</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                     <li><a href="index.html#servicos">Atendimentos</a></li>
-                    <li><a href="index.html#contato" class="btn-contato">Fale Comigo</a></li>
+                    <li>
+                        <a href="https://wa.me/559888788357?text=${mensagemCodificada}" 
+                           class="btn-contato"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                           Agendar Consulta
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </header>
         `;
+
+        // Lógica de Scroll Suave (mantida igual)
         setTimeout(() => {
             this.querySelectorAll('nav a[href^="#"]').forEach(link => {
                 link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
-                    // Se for um link âncora (#), prevenir comportamento padrão
                     if(href.includes('#')) {
                         e.preventDefault();
                         const targetId = href.split('#')[1];
@@ -44,8 +72,6 @@ class HeaderComponent extends HTMLElement {
             });
         }, 100);
     }
-
-    
 }
 
 customElements.define('site-header', HeaderComponent);
