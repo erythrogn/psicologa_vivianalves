@@ -1,12 +1,8 @@
 class HeaderComponent extends HTMLElement {
     constructor() {
         super();
-        
-        // --- 1. Lógica para definir a saudação (Bom dia/tarde/noite) ---
         const horaAtual = new Date().getHours();
         let saudacao;
-
-        // Regra: 5h às 11:59 (Bom dia) | 12h às 17:59 (Boa tarde) | 18h às 4:59 (Boa noite)
         if (horaAtual >= 5 && horaAtual < 12) {
             saudacao = "bom dia";
         } else if (horaAtual >= 12 && horaAtual < 18) {
@@ -14,14 +10,9 @@ class HeaderComponent extends HTMLElement {
         } else {
             saudacao = "boa noite";
         }
-
-        // --- 2. Monta a mensagem completa ---
         const mensagemTexto = `Olá, Viviana, ${saudacao}. Espero que esteja bem. Estou procurando por acompanhamento psicológico e gostaria de agendar uma sessão de acolhimento. Qual é a melhor forma de proceder?`;
 
-        // --- 3. Codifica para URL (transforma espaços em %20, acentos, etc) ---
         const mensagemCodificada = encodeURIComponent(mensagemTexto);
-
-        // --- 4. Renderiza o HTML usando a variável mensagemCodificada ---
         this.innerHTML = `
         <header>
             <nav>
@@ -50,7 +41,6 @@ class HeaderComponent extends HTMLElement {
         </header>
         `;
 
-        // Lógica de Scroll Suave (mantida igual)
         setTimeout(() => {
             this.querySelectorAll('nav a[href^="#"]').forEach(link => {
                 link.addEventListener('click', function(e) {
