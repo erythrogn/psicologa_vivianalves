@@ -1,8 +1,13 @@
 class HeaderComponent extends HTMLElement {
     constructor() {
         super();
+    }
+
+    connectedCallback() {
+        // 1. Lógica da Saudação
         const horaAtual = new Date().getHours();
         let saudacao;
+        
         if (horaAtual >= 5 && horaAtual < 12) {
             saudacao = "bom dia";
         } else if (horaAtual >= 12 && horaAtual < 18) {
@@ -10,9 +15,11 @@ class HeaderComponent extends HTMLElement {
         } else {
             saudacao = "boa noite";
         }
-        const mensagemTexto = `Olá, Viviana, ${saudacao}. Espero que esteja bem. Estou procurando por acompanhamento psicológico e gostaria de agendar uma sessão de acolhimento. Qual é a melhor forma de proceder?`;
 
+        const mensagemTexto = `Olá, Viviana, ${saudacao}. Espero que esteja bem. Estou procurando por acompanhamento psicológico e gostaria de agendar uma sessão de acolhimento. Qual é a melhor forma de proceder?`;
         const mensagemCodificada = encodeURIComponent(mensagemTexto);
+
+        // 2. Renderização do HTML (Com botão Mobile adicionado)
         this.innerHTML = `
         <header>
             <nav>
@@ -24,7 +31,13 @@ class HeaderComponent extends HTMLElement {
                     </div>
                 </a>
 
-                <ul>
+                <button class="mobile-btn" aria-label="Abrir menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+
+                <ul class="nav-list">
                     <li><a href="index.html">Início</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                     <li><a href="index.html#servicos">Atendimentos</a></li>
@@ -41,26 +54,51 @@ class HeaderComponent extends HTMLElement {
         </header>
         `;
 
-        setTimeout(() => {
-            this.querySelectorAll('nav a[href^="#"]').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if(href.includes('#')) {
-                        e.preventDefault();
-                        const targetId = href.split('#')[1];
-                        const targetElement = document.getElementById(targetId);
-                        if(targetElement) {
-                            const headerHeight = document.querySelector('header').offsetHeight;
-                            const targetPosition = targetElement.offsetTop - headerHeight - 20;
-                            window.scrollTo({
-                                top: targetPosition,
-                                behavior: 'smooth'
-                            });
-                        }
-                    }
-                });
+        // 3. Inicializa os Eventos
+        this.initEvents();
+    }
+
+    initEvents() {
+        const mobileBtn = this.querySelector('.mobile-btn');
+        const navList = this.querySelector('.nav-list');
+        const navLinks = this.querySelectorAll('.nav-list a');
+
+        // Toggle Menu Mobile
+        mobileBtn.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            mobileBtn.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link (UX)
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+                mobileBtn.classList.remove('active');
             });
-        }, 100);
+        });
+
+        // Scroll Suave Otimizado
+        this.querySelectorAll('a[href^="#"], a[href*="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                // Verifica se é apenas uma âncora na mesma página ou link completo
+                const targetId = href.includes('#') ? href.split('#')[1] : null;
+                
+                if (targetId) {
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const headerHeight = this.querySelector('header').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight - 20;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
     }
 }
 
