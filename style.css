@@ -767,10 +767,38 @@ section.visible {
 }
 
 .sobre-icon {
-    font-size: 3.5rem;
-    margin-bottom: 25px;
-    display: block;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Fundo suave usando suas variáveis */
+    background-color: rgba(192, 162, 254, 0.15); /* Lilás com transparência */
+    border-radius: 50%;
+    
+    /* Transição usando sua variável padrão */
+    transition: var(--transicao-padrao);
+}
+
+.sobre-icon svg {
+    width: 45px;
+    height: 45px;
+    stroke: var(--azul-escuro); /* Cor da marca */
+    stroke-width: 1.3; /* Traço fino e delicado */
+    transition: var(--transicao-padrao);
+}
+
+/* Efeito Hover integrado ao card */
+.sobre-card:hover .sobre-icon {
+    background-color: var(--azul-escuro);
+    transform: scale(1.1) rotate(5deg); /* Pequeno movimento */
+    box-shadow: 0 10px 20px rgba(63, 70, 143, 0.25);
+}
+
+.sobre-card:hover .sobre-icon svg {
+    stroke: var(--branco); /* Ícone fica branco */
 }
 
 .sobre-card h3 {
@@ -874,6 +902,90 @@ section.visible {
     line-height: 1.8;
     color: var(--texto-base);
     margin-bottom: 25px;
+}
+/* --- CSS para a Seção BIO (Foto) --- */
+
+.bio-section {
+    padding: 20px 0 60px;
+    background-color: transparent; /* Fundo limpo */
+}
+
+.bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide em 2 colunas iguais */
+    gap: 4rem;
+    align-items: center;
+}
+
+.bio-foto-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* Fundo decorativo atrás da foto (opcional, mas fica chique) */
+.bio-blob-bg {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    background-color: var(--menta); /* Usando sua variável */
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Forma orgânica */
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.bio-foto {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 20px; /* Borda arredondada igual aos cards */
+    position: relative;
+    z-index: 2; /* Fica acima do fundo decorativo */
+    box-shadow: 0 15px 30px rgba(63, 70, 143, 0.15); /* Sombra suave */
+    border: 4px solid var(--branco);
+    transition: var(--transicao-padrao);
+}
+
+.bio-foto:hover {
+    transform: scale(1.02);
+}
+
+.bio-texto {
+    text-align: left;
+}
+
+.bio-texto h2 {
+    font-size: 2.5rem;
+    color: var(--azul-escuro);
+    margin-bottom: 1.5rem;
+    font-family: 'Tan Pearl', serif;
+}
+
+.bio-texto p {
+    font-size: 1.15rem;
+    color: var(--texto-base);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+/* Responsividade para Celular */
+@media (max-width: 768px) {
+    .bio-grid {
+        grid-template-columns: 1fr; /* Vira uma coluna só */
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .bio-texto {
+        text-align: center;
+        padding: 0 1rem;
+    }
+    
+    .bio-foto {
+        max-width: 300px;
+    }
 }
 
 @media (max-width: 992px) {
