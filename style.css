@@ -403,7 +403,7 @@ nav a:not(.btn-contato):focus {
     background: rgba(255, 255, 255, 0.98);
     padding: 45px 35px;
     border-radius: 22px;
-    border: 1px solid rgba(186, 167, 153, 0.2); /* Borda bege suave */
+    border: 1px solid rgba(153, 175, 186, 0.2); /* Borda bege suave */
     box-shadow: 0 10px 30px var(--sombra-suave);
     transition: var(--transicao-padrao);
     position: relative;
@@ -752,7 +752,7 @@ section.visible {
     background: rgba(255, 255, 255, 0.98);
     padding: 45px 35px;
     border-radius: 22px;
-    border: 1px solid rgba(186, 167, 153, 0.2);
+    border: 1px solid rgba(153, 163, 186, 0.2);
     box-shadow: 0 10px 30px var(--sombra-suave);
     transition: var(--transicao-padrao);
     text-align: center;
@@ -896,7 +896,7 @@ section.visible {
     background: rgba(255, 255, 255, 0.98);
     padding: 55px 45px;
     border-radius: 22px;
-    border: 1px solid rgba(186, 167, 153, 0.2);
+    border: 1px solid rgba(153, 175, 186, 0.2);
     box-shadow: 0 10px 30px var(--sombra-suave);
     transition: var(--transicao-padrao);
     backdrop-filter: blur(8px);
@@ -941,7 +941,7 @@ section.visible {
     background: rgba(255, 255, 255, 0.98);
     padding: 60px 50px;
     border-radius: 22px;
-    border: 1px solid rgba(186, 167, 153, 0.2);
+    border: 1px solid rgba(153, 175, 186, 0.2);
     box-shadow: 0 10px 30px var(--sombra-suave);
     margin: 90px 0 50px;
     backdrop-filter: blur(8px);
