@@ -4,7 +4,6 @@ class HeaderComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        // 1. Lógica da Saudação
         const horaAtual = new Date().getHours();
         let saudacao;
         
@@ -20,8 +19,6 @@ class HeaderComponent extends HTMLElement {
 Estou buscando atendimento psicológico no momento e gostaria de saber como funciona o processo, valores e disponibilidade.
 Fico no aguardo. Obrigada(o).?`;
         const mensagemCodificada = encodeURIComponent(mensagemTexto);
-
-        // 2. Renderização do HTML (Com botão Mobile adicionado)
         this.innerHTML = `
         <header>
             <nav>
@@ -42,6 +39,7 @@ Fico no aguardo. Obrigada(o).?`;
                 <ul class="nav-list">
                     <li><a href="index.html">Início</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="depoimentos.html">Depoimentos</a></li>
 
                     <li>
                         <a href="https://wa.me/559888788357?text=${mensagemCodificada}" 
