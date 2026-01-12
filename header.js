@@ -16,7 +16,9 @@ class HeaderComponent extends HTMLElement {
             saudacao = "boa noite";
         }
 
-        const mensagemTexto = `Olá, Viviana, ${saudacao}. Espero que esteja bem. Estou procurando por acompanhamento psicológico e gostaria de agendar uma sessão de acolhimento. Qual é a melhor forma de proceder?`;
+        const mensagemTexto = `Olá! ${saudacao} cheguei até você pelo seu site.
+Estou buscando atendimento psicológico no momento e gostaria de saber como funciona o processo, valores e disponibilidade.
+Fico no aguardo. Obrigada(o).?`;
         const mensagemCodificada = encodeURIComponent(mensagemTexto);
 
         // 2. Renderização do HTML (Com botão Mobile adicionado)
@@ -40,7 +42,7 @@ class HeaderComponent extends HTMLElement {
                 <ul class="nav-list">
                     <li><a href="index.html">Início</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
-                    <li><a href="index.html#servicos">Atendimentos</a></li>
+
                     <li>
                         <a href="https://wa.me/559888788357?text=${mensagemCodificada}" 
                            class="btn-contato"
@@ -77,11 +79,9 @@ class HeaderComponent extends HTMLElement {
             });
         });
 
-        // Scroll Suave Otimizado
         this.querySelectorAll('a[href^="#"], a[href*="#"]').forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
-                // Verifica se é apenas uma âncora na mesma página ou link completo
                 const targetId = href.includes('#') ? href.split('#')[1] : null;
                 
                 if (targetId) {
