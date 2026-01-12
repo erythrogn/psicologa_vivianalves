@@ -11,17 +11,28 @@
 }
 
 :root {
-    --azul-claro: #afcbeb;
-    --menta: #c4ebe6;
-    --lilas: #c0a2fe;
-    --azul-escuro: #3f468f;
-    --bege: #afcbeb;
-    --roxo-escuro: #70446c;
+    /* --- PALETA DE CORES (Apenas Azul e Bege) --- */
+    
+    /* Azuis */
+    --azul-profundo: #2a2f63; /* Substitui o roxo escuro */
+    --azul-escuro: #3f468f;   /* Cor principal da marca */
+    --azul-medio: #7a9cc6;    /* Para detalhes e links */
+    --azul-claro: #afcbeb;    /* Fundo hero */
+    --azul-palido: #eef4fa;   /* Substitui o menta em fundos */
+
+    /* Beges */
+    --bege-escuro: #a39081;   /* Detalhes de texto/footer */
+    --bege: #baa799;          /* Cor de destaque/acolhimento */
+    --bege-claro: #f4f0eb;    /* Fundo alternativo */
+
+    /* Neutros */
     --branco: #ffffff;
-    --texto-base: #3f468f;
-    --sombra-suave: rgba(0, 0, 0, 0.08);
-    --sombra-media: rgba(0, 0, 0, 0.12);
-    --sombra-forte: rgba(0, 0, 0, 0.18);
+    --texto-base: #555;
+
+    /* Sombras e Transições */
+    --sombra-suave: rgba(63, 70, 143, 0.08); /* Sombra levemente azulada */
+    --sombra-media: rgba(63, 70, 143, 0.12);
+    --sombra-forte: rgba(63, 70, 143, 0.18);
     --transicao-padrao: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
     --transicao-rapida: all 0.25s ease;
 }
@@ -50,6 +61,7 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #fafafa; /* Fundo geral levemente off-white */
 }
 
 h1, h2, .logo-text {
@@ -109,7 +121,7 @@ nav {
     width: 48px;
     height: 48px;
     transition: var(--transicao-padrao);
-    filter: drop-shadow(0 2px 4px rgba(112, 68, 108, 0.15));
+    filter: drop-shadow(0 2px 4px rgba(63, 70, 143, 0.15));
 }
 
 .brand:hover .logo-img {
@@ -126,11 +138,12 @@ nav {
 .logo-sub {
     font-family: 'Quicksand', sans-serif;
     font-size: 0.75rem;
-    color: var(--roxo-escuro);
+    color: var(--bege); /* Alterado para Bege */
     display: block;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     margin-top: 2px;
+    font-weight: 700;
 }
 
 nav ul {
@@ -141,7 +154,7 @@ nav ul {
 
 nav a {
     text-decoration: none;
-    color: var(--roxo-escuro);
+    color: var(--azul-escuro); /* Alterado para Azul Escuro */
     font-weight: 600;
     font-size: 0.95rem;
     position: relative;
@@ -156,7 +169,7 @@ nav a:not(.btn-contato)::after {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--lilas);
+    background-color: var(--bege); /* Sublinhado Bege */
     transition: width 0.3s ease;
     transform-origin: left;
 }
@@ -168,17 +181,17 @@ nav a:not(.btn-contato):focus::after {
 
 nav a:not(.btn-contato):hover,
 nav a:not(.btn-contato):focus {
-    color: var(--azul-escuro);
+    color: var(--bege); /* Hover Bege */
     outline: none;
 }
 
 .btn-contato {
-    background-color: var(--lilas);
+    background-color: var(--bege); /* Botão Bege */
     color: var(--branco) !important;
     padding: 10px 24px;
     border-radius: 25px;
     transition: var(--transicao-padrao);
-    box-shadow: 0 4px 12px rgba(192, 162, 254, 0.25);
+    box-shadow: 0 4px 12px rgba(186, 167, 153, 0.3);
     position: relative;
     overflow: hidden;
     border: none;
@@ -199,7 +212,7 @@ nav a:not(.btn-contato):focus {
 
 .btn-contato:hover,
 .btn-contato:focus {
-    background-color: var(--azul-escuro);
+    background-color: var(--azul-escuro); /* Hover Azul Escuro */
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(63, 70, 143, 0.35);
     outline: none;
@@ -210,6 +223,7 @@ nav a:not(.btn-contato):focus {
     left: 100%;
 }
 
+/* --- HERO SECTION --- */
 .hero {
     background: linear-gradient(135deg, var(--azul-claro) 0%, #9fbde9 100%);
     text-align: center;
@@ -234,7 +248,7 @@ nav a:not(.btn-contato):focus {
     width: 400px;
     height: 400px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
     top: -200px;
     right: -200px;
     animation: float 25s infinite ease-in-out;
@@ -247,7 +261,8 @@ nav a:not(.btn-contato):focus {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(196, 235, 230, 0.25) 0%, transparent 70%);
+    /* Alterado de Menta para Bege muito suave */
+    background: radial-gradient(circle, rgba(186, 167, 153, 0.25) 0%, transparent 70%);
     bottom: -125px;
     left: -125px;
     animation: float 20s infinite ease-in-out reverse;
@@ -255,15 +270,9 @@ nav a:not(.btn-contato):focus {
 }
 
 @keyframes float {
-    0%, 100% { 
-        transform: translate(0, 0) rotate(0deg) scale(1); 
-    }
-    33% { 
-        transform: translate(20px, -20px) rotate(120deg) scale(1.05); 
-    }
-    66% { 
-        transform: translate(-15px, 15px) rotate(240deg) scale(0.95); 
-    }
+    0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    33% { transform: translate(20px, -20px) rotate(120deg) scale(1.05); }
+    66% { transform: translate(-15px, 15px) rotate(240deg) scale(0.95); }
 }
 
 .hero-logo {
@@ -276,12 +285,8 @@ nav a:not(.btn-contato):focus {
 }
 
 @keyframes logoFloat {
-    0%, 100% { 
-        transform: translateY(0) rotate(0deg); 
-    }
-    50% { 
-        transform: translateY(-12px) rotate(1deg); 
-    }
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
 }
 
 .hero-content {
@@ -291,18 +296,12 @@ nav a:not(.btn-contato):focus {
 }
 
 @keyframes contentFadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(25px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .hero h1 {
-    color: var(--azul-escuro);
+    color: var(--azul-profundo);
     font-size: 3.2rem;
     margin-bottom: 15px;
     text-shadow: 0 3px 15px rgba(63, 70, 143, 0.15);
@@ -318,8 +317,8 @@ nav a:not(.btn-contato):focus {
 }
 
 .cta-button {
-    background-color: var(--azul-escuro);
-    background: linear-gradient(135deg, var(--azul-escuro) 0%, #35408a 100%);
+    /* Gradient de Azul Escuro para Azul Profundo */
+    background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-profundo) 100%);
     color: var(--branco);
     padding: 16px 40px;
     text-decoration: none;
@@ -344,7 +343,8 @@ nav a:not(.btn-contato):focus {
     left: 0;
     width: 0;
     height: 100%;
-    background: linear-gradient(135deg, var(--roxo-escuro) 0%, #5c3a58 100%);
+    /* Hover vira Bege */
+    background: linear-gradient(135deg, var(--bege) 0%, var(--bege-escuro) 100%);
     transition: width 0.4s ease;
     z-index: -1;
 }
@@ -374,7 +374,7 @@ nav a:not(.btn-contato):focus {
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.05);
-    background-image: url('mao_com_flores.svg');
+    background-image: url('mao_com_flores.svg'); /* Certifique-se que o SVG existe */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -403,7 +403,7 @@ nav a:not(.btn-contato):focus {
     background: rgba(255, 255, 255, 0.98);
     padding: 45px 35px;
     border-radius: 22px;
-    border: 1px solid rgba(196, 235, 230, 0.5);
+    border: 1px solid rgba(186, 167, 153, 0.2); /* Borda bege suave */
     box-shadow: 0 10px 30px var(--sombra-suave);
     transition: var(--transicao-padrao);
     position: relative;
@@ -420,14 +420,15 @@ nav a:not(.btn-contato):focus {
     left: 0;
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, var(--lilas), var(--azul-claro), var(--menta));
+    /* Gradient do topo do card: Azul Escuro -> Azul Claro -> Bege */
+    background: linear-gradient(90deg, var(--azul-escuro), var(--azul-claro), var(--bege));
     z-index: 2;
 }
 
 .card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px var(--sombra-media);
-    border-color: var(--lilas);
+    border-color: var(--bege);
 }
 
 .container h2 {
@@ -446,7 +447,8 @@ nav a:not(.btn-contato):focus {
     transform: translateX(-50%);
     width: 70px;
     height: 4px;
-    background: linear-gradient(90deg, var(--lilas), var(--azul-claro));
+    /* Linha abaixo do título: Bege -> Azul */
+    background: linear-gradient(90deg, var(--bege), var(--azul-claro));
     border-radius: 2px;
 }
 
@@ -460,7 +462,7 @@ nav a:not(.btn-contato):focus {
 }
 
 .card:hover h3 {
-    color: var(--roxo-escuro);
+    color: var(--bege);
 }
 
 .card p {
@@ -468,15 +470,16 @@ nav a:not(.btn-contato):focus {
     line-height: 1.7;
 }
 
+/* --- BG COLOR (Antes era Menta, agora Azul Pálido) --- */
 .bg-color {
-    background: linear-gradient(135deg, var(--menta) 0%, #b3e0db 100%);
+    background: linear-gradient(135deg, var(--azul-palido) 0%, #dce9f5 100%);
     position: relative;
     overflow: hidden;
 }
 
 @media (-ms-high-contrast: active), (-ms-high-contrast: none) {
     .bg-color {
-        background: var(--menta);
+        background: var(--azul-palido);
     }
 }
 
@@ -487,7 +490,8 @@ nav a:not(.btn-contato):focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23c4ebe6' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
+    /* SVG de fundo agora em Bege/Azul suave */
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23baa799' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
     opacity: 0.4;
     z-index: 0;
 }
@@ -533,7 +537,7 @@ nav a:not(.btn-contato):focus {
 
 .feature-item:hover {
     transform: translateY(-8px);
-    border-color: var(--lilas);
+    border-color: var(--bege);
     box-shadow: 0 20px 40px var(--sombra-media);
 }
 
@@ -548,8 +552,9 @@ nav a:not(.btn-contato):focus {
     line-height: 1.7;
 }
 
+/* --- FOOTER (Bege) --- */
 footer {
-    background: linear-gradient(135deg, var(--bege) 0%, #a89786 100%);
+    background: linear-gradient(135deg, var(--bege) 0%, var(--bege-escuro) 100%);
     color: var(--branco);
     text-align: center;
     padding: 70px 0 50px;
@@ -570,7 +575,8 @@ footer::before {
     left: 0;
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, var(--lilas), var(--azul-claro), var(--menta));
+    /* Linha superior: Azul Escuro -> Azul Claro -> Bege */
+    background: linear-gradient(90deg, var(--azul-escuro), var(--azul-claro), var(--bege-claro));
     z-index: 1;
 }
 
@@ -665,20 +671,21 @@ section.visible {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--menta);
+    background: var(--azul-palido);
     border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, var(--lilas), var(--azul-escuro));
+    background: linear-gradient(135deg, var(--bege), var(--azul-escuro));
     border-radius: 6px;
-    border: 2px solid var(--menta);
+    border: 2px solid var(--azul-palido);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, var(--azul-escuro), var(--roxo-escuro));
+    background: linear-gradient(135deg, var(--azul-escuro), var(--azul-profundo));
 }
 
+/* --- Sobre Page --- */
 .sobre-page .sobre-hero {
     background: linear-gradient(135deg, var(--azul-claro) 0%, #9fbde9 100%);
     text-align: center;
@@ -692,7 +699,7 @@ section.visible {
 }
 
 .sobre-page .sobre-hero h1 {
-    color: var(--azul-escuro);
+    color: var(--azul-profundo);
     font-size: 3.8rem;
     margin-bottom: 20px;
     text-shadow: 0 3px 15px rgba(63, 70, 143, 0.15);
@@ -745,7 +752,7 @@ section.visible {
     background: rgba(255, 255, 255, 0.98);
     padding: 45px 35px;
     border-radius: 22px;
-    border: 1px solid rgba(196, 235, 230, 0.5);
+    border: 1px solid rgba(186, 167, 153, 0.2);
     box-shadow: 0 10px 30px var(--sombra-suave);
     transition: var(--transicao-padrao);
     text-align: center;
@@ -763,9 +770,10 @@ section.visible {
 .sobre-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px var(--sombra-media);
-    border-color: var(--lilas);
+    border-color: var(--bege);
 }
 
+/* --- ICONE NOVO (Bege e Azul) --- */
 .sobre-icon {
     width: 90px;
     height: 90px;
@@ -774,31 +782,30 @@ section.visible {
     align-items: center;
     justify-content: center;
     
-    /* Fundo suave usando suas variáveis */
-    background-color: rgba(192, 162, 254, 0.15); /* Lilás com transparência */
+    /* Fundo Bege suave */
+    background-color: rgba(186, 167, 153, 0.15); 
     border-radius: 50%;
     
-    /* Transição usando sua variável padrão */
     transition: var(--transicao-padrao);
 }
 
 .sobre-icon svg {
     width: 45px;
     height: 45px;
-    stroke: var(--azul-escuro); /* Cor da marca */
-    stroke-width: 1.3; /* Traço fino e delicado */
+    stroke: var(--azul-escuro); /* Icone Azul */
+    stroke-width: 1.3;
     transition: var(--transicao-padrao);
 }
 
-/* Efeito Hover integrado ao card */
+/* Efeito Hover nos Cards */
 .sobre-card:hover .sobre-icon {
-    background-color: var(--azul-escuro);
-    transform: scale(1.1) rotate(5deg); /* Pequeno movimento */
+    background-color: var(--azul-escuro); /* Fundo vira Azul */
+    transform: scale(1.1) rotate(5deg);
     box-shadow: 0 10px 20px rgba(63, 70, 143, 0.25);
 }
 
 .sobre-card:hover .sobre-icon svg {
-    stroke: var(--branco); /* Ícone fica branco */
+    stroke: var(--branco);
 }
 
 .sobre-card h3 {
@@ -812,6 +819,72 @@ section.visible {
     line-height: 1.7;
 }
 
+/* --- SEÇÃO BIO (Adicionada recentemente, ajustando cores) --- */
+.bio-section {
+    padding: 20px 0 60px;
+    background-color: transparent;
+}
+
+.bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.bio-foto-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.bio-blob-bg {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    background-color: var(--azul-claro); /* Era menta, agora azul claro */
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.bio-foto {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 15px 30px rgba(63, 70, 143, 0.15);
+    border: 4px solid var(--branco);
+    transition: var(--transicao-padrao);
+}
+
+.bio-foto:hover {
+    transform: scale(1.02);
+}
+
+.bio-texto {
+    text-align: left;
+}
+
+.bio-texto h2 {
+    font-size: 2.5rem;
+    color: var(--azul-profundo); /* Azul mais forte */
+    margin-bottom: 1.5rem;
+    font-family: 'Tan Pearl', serif;
+}
+
+.bio-texto p {
+    font-size: 1.15rem;
+    color: var(--texto-base);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+/* --- Missão e Visão --- */
 .missao-visao {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
@@ -823,7 +896,7 @@ section.visible {
     background: rgba(255, 255, 255, 0.98);
     padding: 55px 45px;
     border-radius: 22px;
-    border: 1px solid rgba(196, 235, 230, 0.5);
+    border: 1px solid rgba(186, 167, 153, 0.2);
     box-shadow: 0 10px 30px var(--sombra-suave);
     transition: var(--transicao-padrao);
     backdrop-filter: blur(8px);
@@ -836,7 +909,7 @@ section.visible {
 .missao:hover, .visao:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px var(--sombra-media);
-    border-color: var(--lilas);
+    border-color: var(--bege);
 }
 
 .missao h2, .visao h2 {
@@ -854,7 +927,7 @@ section.visible {
     left: 0;
     width: 70px;
     height: 4px;
-    background: linear-gradient(90deg, var(--lilas), var(--azul-claro));
+    background: linear-gradient(90deg, var(--bege), var(--azul-claro));
     border-radius: 2px;
 }
 
@@ -868,7 +941,7 @@ section.visible {
     background: rgba(255, 255, 255, 0.98);
     padding: 60px 50px;
     border-radius: 22px;
-    border: 1px solid rgba(196, 235, 230, 0.5);
+    border: 1px solid rgba(186, 167, 153, 0.2);
     box-shadow: 0 10px 30px var(--sombra-suave);
     margin: 90px 0 50px;
     backdrop-filter: blur(8px);
@@ -893,7 +966,7 @@ section.visible {
     left: 0;
     width: 70px;
     height: 4px;
-    background: linear-gradient(90deg, var(--lilas), var(--azul-claro));
+    background: linear-gradient(90deg, var(--bege), var(--azul-claro));
     border-radius: 2px;
 }
 
@@ -903,282 +976,108 @@ section.visible {
     color: var(--texto-base);
     margin-bottom: 25px;
 }
-/* --- CSS para a Seção BIO (Foto) --- */
 
-.bio-section {
-    padding: 20px 0 60px;
-    background-color: transparent; /* Fundo limpo */
-}
-
-.bio-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Divide em 2 colunas iguais */
-    gap: 4rem;
-    align-items: center;
-}
-
-.bio-foto-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-
-/* Fundo decorativo atrás da foto (opcional, mas fica chique) */
-.bio-blob-bg {
-    position: absolute;
-    width: 90%;
-    height: 90%;
-    background-color: var(--menta); /* Usando sua variável */
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Forma orgânica */
-    top: 10px;
-    left: 10px;
-    z-index: 1;
-    opacity: 0.5;
-}
-
-.bio-foto {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    border-radius: 20px; /* Borda arredondada igual aos cards */
-    position: relative;
-    z-index: 2; /* Fica acima do fundo decorativo */
-    box-shadow: 0 15px 30px rgba(63, 70, 143, 0.15); /* Sombra suave */
-    border: 4px solid var(--branco);
-    transition: var(--transicao-padrao);
-}
-
-.bio-foto:hover {
-    transform: scale(1.02);
-}
-
-.bio-texto {
-    text-align: left;
-}
-
-.bio-texto h2 {
-    font-size: 2.5rem;
-    color: var(--azul-escuro);
-    margin-bottom: 1.5rem;
-    font-family: 'Tan Pearl', serif;
-}
-
-.bio-texto p {
-    font-size: 1.15rem;
-    color: var(--texto-base);
-    margin-bottom: 1rem;
-    line-height: 1.8;
-}
-
-/* Responsividade para Celular */
-@media (max-width: 768px) {
-    .bio-grid {
-        grid-template-columns: 1fr; /* Vira uma coluna só */
-        gap: 2rem;
-        text-align: center;
-    }
-    
-    .bio-texto {
-        text-align: center;
-        padding: 0 1rem;
-    }
-    
-    .bio-foto {
-        max-width: 300px;
-    }
-}
-
+/* --- Media Queries (Responsividade) --- */
 @media (max-width: 992px) {
-    .hero h1 {
-        font-size: 2.8rem;
-    }
-    
-    .container h2 {
-        font-size: 2.2rem;
-    }
-    
-    .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .missao-visao {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
+    .hero h1 { font-size: 2.8rem; }
+    .container h2 { font-size: 2.2rem; }
+    .cards-grid { grid-template-columns: 1fr; gap: 25px; }
+    .missao-visao { grid-template-columns: 1fr; gap: 35px; }
 }
 
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px 20px;
-    }
+    nav { flex-direction: column; gap: 15px; padding: 15px 20px; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; }
+    nav li { flex: 1; min-width: 120px; text-align: center; }
+    .btn-contato { margin-top: 10px; width: 100%; max-width: 200px; }
+    .hero { padding: 80px 20px; min-height: 75vh; }
+    .hero h1 { font-size: 2.4rem; }
+    .hero p { font-size: 1.1rem; }
+    .container { padding: 70px 20px; }
+    .container h2 { font-size: 1.9rem; }
+    .feature-item { width: 100%; max-width: 100%; }
+    .social-links { flex-direction: column; align-items: center; }
+    .social-links a { width: 100%; max-width: 280px; margin: 5px 0; }
+    .sobre-page .sobre-hero h1 { font-size: 2.8rem; }
+    .sobre-page .sobre-intro { font-size: 1.2rem; }
+    .sobre-grid { grid-template-columns: 1fr; gap: 25px; }
+    .missao, .visao { padding: 40px 30px; }
+    .sobre-texto { padding: 40px 30px; }
+    .missao h2, .visao h2, .sobre-texto h2 { font-size: 1.9rem; }
     
-    nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        width: 100%;
-    }
+    /* Bio Mobile */
+    .bio-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+    .bio-texto { text-align: center; padding: 0 1rem; }
+    .bio-foto { max-width: 300px; }
+    .bio-texto h2::after { left: 50%; transform: translateX(-50%); }
     
-    nav li {
-        flex: 1;
-        min-width: 120px;
-        text-align: center;
+    /* Menu Mobile Btn (do JS anterior) */
+    .mobile-btn { display: flex; z-index: 1002; }
+    .nav-list {
+        position: fixed; top: 0; right: 0; width: 70%; height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column; align-items: center; justify-content: center;
+        transform: translateX(100%);
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 1001;
+        backdrop-filter: blur(10px);
     }
-    
-    .btn-contato {
-        margin-top: 10px;
-        width: 100%;
-        max-width: 200px;
-    }
-    
-    .hero {
-        padding: 80px 20px;
-        min-height: 75vh;
-    }
-    
-    .hero h1 {
-        font-size: 2.4rem;
-    }
-    
-    .hero p {
-        font-size: 1.1rem;
-    }
-    
-    .container {
-        padding: 70px 20px;
-    }
-    
-    .container h2 {
-        font-size: 1.9rem;
-    }
-    
-    .feature-item {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .social-links {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .social-links a {
-        width: 100%;
-        max-width: 280px;
-        margin: 5px 0;
-    }
-    
-    .sobre-page .sobre-hero h1 {
-        font-size: 2.8rem;
-    }
-    
-    .sobre-page .sobre-intro {
-        font-size: 1.2rem;
-    }
-    
-    .sobre-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
-    .missao, .visao {
-        padding: 40px 30px;
-    }
-    
-    .sobre-texto {
-        padding: 40px 30px;
-    }
-    
-    .missao h2, .visao h2, .sobre-texto h2 {
-        font-size: 1.9rem;
-    }
+    .nav-list.active { transform: translateX(0); }
+    .mobile-btn.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .mobile-btn.active .bar:nth-child(2) { opacity: 0; }
+    .mobile-btn.active .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 }
 
 @media (max-width: 480px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .cta-button {
-        padding: 14px 30px;
-        font-size: 0.95rem;
-    }
-    
-    .container h2 {
-        font-size: 1.7rem;
-    }
-    
-    .card, .feature-item, .sobre-card {
-        padding: 30px 20px;
-    }
-    
-    .sobre-page .sobre-hero h1 {
-        font-size: 2.2rem;
-    }
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
+    .cta-button { padding: 14px 30px; font-size: 0.95rem; }
+    .container h2 { font-size: 1.7rem; }
+    .card, .feature-item, .sobre-card { padding: 30px 20px; }
+    .sobre-page .sobre-hero h1 { font-size: 2.2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-    
-    .hero::before,
-    .hero::after,
-    .hero-logo,
-    .card,
-    .feature-item,
-    .sobre-card,
-    .missao,
-    .visao {
-        animation: none !important;
-    }
+    .hero::before, .hero::after, .hero-logo, .card, .feature-item, .sobre-card, .missao, .visao { animation: none !important; }
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #1a1a1a;
-        color: #e0e0e0;
-    }
-    
-    .card, .feature-item, .sobre-card, .missao, .visao, .sobre-texto {
-        background: rgba(30, 30, 30, 0.95);
-        color: #e0e0e0;
-        border-color: rgba(100, 100, 100, 0.3);
-    }
-    
-    .card h3, .feature-item h3, .sobre-card h3, .missao h2, .visao h2, .sobre-texto h2 {
-        color: var(--azul-claro);
-    }
+/* Estilo base do menu (importante para o mobile) */
+.nav-list {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    transition: 0.3s;
 }
 
-/* Melhorar acessibilidade do foco */
-a:focus,
-button:focus,
-.btn-contato:focus,
-.cta-button:focus,
-.social-links a:focus {
-    outline: 3px solid var(--lilas);
+/* Botão Mobile (Escondido no Desktop) */
+.mobile-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mobile-btn .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--azul-escuro);
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Acessibilidade */
+a:focus, button:focus, .btn-contato:focus, .cta-button:focus, .social-links a:focus {
+    outline: 3px solid var(--bege);
     outline-offset: 3px;
 }
-
-a:focus:not(:focus-visible),
-button:focus:not(:focus-visible) {
-    outline: none;
-}
-
-a:focus-visible,
-button:focus-visible {
-    outline: 3px solid var(--lilas);
+a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
+a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--bege);
     outline-offset: 3px;
 }
