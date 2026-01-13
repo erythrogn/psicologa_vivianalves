@@ -31,19 +31,19 @@ class FooterComponent extends HTMLElement {
                 <p>Atendimento online para todo o mundo.</p>
                 
                 <p class="copyright">Vivian Alves - Psicóloga Clínica | CRP 10/09546</p>
-                <p class="copyright">&copy; ${anoAtual} by Dimen_6.</p>
+                <p class="copyright">&copy; ${anoAtual} by <a href="https://dimen-6.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Dimen6</a>.</p>
                 
                 <div class="social-links">
                     <a href="https://wa.me/559888788357?text=${mensagemCodificada}" 
                        target="_blank" 
                        rel="noopener noreferrer">
-                       WhatsApp
+                        WhatsApp
                     </a>
                     
                     <a href="https://www.instagram.com/psi.vivianalves?igsh=N2k4aHFwem1oNDlq" 
                        target="_blank" 
                        rel="noopener noreferrer">
-                       Instagram
+                        Instagram
                     </a>
                 </div>
             </div>

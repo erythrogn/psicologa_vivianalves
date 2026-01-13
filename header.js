@@ -1,6 +1,7 @@
 class HeaderComponent extends HTMLElement {
     constructor() {
         super();
+        this.isMobileMenuOpen = false;
     }
 
     connectedCallback() {
@@ -30,7 +31,7 @@ Fico no aguardo. Obrigada(o).?`;
                     </div>
                 </a>
 
-                <button class="mobile-btn" aria-label="Abrir menu">
+                <button class="mobile-btn" aria-label="Abrir menu" aria-expanded="false">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -40,8 +41,7 @@ Fico no aguardo. Obrigada(o).?`;
                     <li><a href="index.html">Início</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                     <li><a href="depoimentos.html">Depoimentos</a></li>
-
-                    <li>
+                    <li class="btn-contato-wrapper">
                         <a href="https://wa.me/559888788357?text=${mensagemCodificada}" 
                            class="btn-contato"
                            target="_blank"
@@ -54,7 +54,6 @@ Fico no aguardo. Obrigada(o).?`;
         </header>
         `;
 
-        // 3. Inicializa os Eventos
         this.initEvents();
     }
 
@@ -63,37 +62,78 @@ Fico no aguardo. Obrigada(o).?`;
         const navList = this.querySelector('.nav-list');
         const navLinks = this.querySelectorAll('.nav-list a');
 
-        // Toggle Menu Mobile
-        mobileBtn.addEventListener('click', () => {
+        const toggleMenu = () => {
+            this.isMobileMenuOpen = !this.isMobileMenuOpen;
             navList.classList.toggle('active');
             mobileBtn.classList.toggle('active');
+            mobileBtn.setAttribute('aria-expanded', this.isMobileMenuOpen);
+            document.body.style.overflow = this.isMobileMenuOpen ? 'hidden' : '';
+        };
+
+        mobileBtn.addEventListener('click', toggleMenu);
+        
+        mobileBtn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleMenu();
+            }
         });
 
-        // Fechar menu ao clicar em um link (UX)
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                navList.classList.remove('active');
-                mobileBtn.classList.remove('active');
+                if (this.isMobileMenuOpen) {
+                    toggleMenu();
+                }
+            });
+            
+            link.addEventListener('mouseenter', () => {
+                if (!this.isMobileMenuOpen) {
+                    link.style.transform = 'translateY(-2px)';
+                }
+            });
+            
+            link.addEventListener('mouseleave', () => {
+                link.style.transform = '';
             });
         });
 
-        this.querySelectorAll('a[href^="#"], a[href*="#"]').forEach(link => {
+        document.addEventListener('click', (e) => {
+            if (this.isMobileMenuOpen && 
+                !navList.contains(e.target) && 
+                !mobileBtn.contains(e.target)) {
+                toggleMenu();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isMobileMenuOpen) {
+                toggleMenu();
+            }
+        });
+
+        this.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
-                const targetId = href.includes('#') ? href.split('#')[1] : null;
                 
-                if (targetId) {
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        e.preventDefault();
-                        const headerHeight = this.querySelector('header').offsetHeight;
-                        const targetPosition = targetElement.offsetTop - headerHeight - 20;
-
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
+                if (href === '#') return;
+                
+                const targetId = href.replace('#', '');
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    e.preventDefault();
+                    
+                    if (this.isMobileMenuOpen) {
+                        toggleMenu();
                     }
+                    
+                    const headerHeight = this.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight - 20;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
