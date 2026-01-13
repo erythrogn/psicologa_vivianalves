@@ -35,25 +35,40 @@
     --transicao-rapida: all 0.25s ease;
 }
 
-/* --- MODO NOTURNO (Alto Contraste) --- */
+
 body.dark-mode {
-    --branco: #f0f0f0;            /* Branco suave */
-    --bg-site: #050508;           /* Fundo quase preto */
-    --header-bg: rgba(10, 12, 18, 0.95);
-    --card-bg: #13151f;           /* Card azul bem escuro */
+    --branco: #e6e6e6;            
+    --bg-site: #08090f;          
+    --header-bg: rgba(8, 9, 15, 0.90); 
+    --card-bg: rgba(22, 25, 38, 0.7);  
     
-    --azul-palido: #1a1d2e;
+    --azul-palido: #13151f;
     --bege-claro: #1c1c1c;
     
-    --texto-base: #d4d4d4;        /* Cinza claro para leitura */
-    --azul-profundo: #afcbeb;     /* Inverte destaques */
-    --azul-escuro: #7a9cc6;
+    --texto-base: #b0b3c7;        
+    --azul-profundo: #dce9f5;     
+    --azul-escuro: #8bafdc;       
     
-    --sombra-suave: rgba(0, 0, 0, 0.6);
-    --sombra-media: rgba(0, 0, 0, 0.8);
-    --sombra-forte: rgba(0, 0, 0, 0.95);
+    --sombra-suave: rgba(0, 0, 0, 0.4);
+    --sombra-media: rgba(0, 0, 0, 0.6);
+    --sombra-forte: rgba(0, 0, 0, 0.8);
 }
+body.dark-mode {
 
+    background: radial-gradient(circle at 50% 0%, #1b1e2e 0%, #050508 75%);
+    background-attachment: fixed; 
+}
+body.dark-mode .card, 
+body.dark-mode .feature-item,
+body.dark-mode .sobre-card,
+body.dark-mode .missao,
+body.dark-mode .visao {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06); 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
 * {
     margin: 0;
     padding: 0;
@@ -1155,3 +1170,22 @@ a:focus, button:focus, .btn-contato:focus, .cta-button:focus, .social-links a:fo
     outline-offset: 3px;
 }
 a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
+
+body.dark-mode .bg-color {
+    background: transparent; 
+}
+
+body.dark-mode .bg-color::before {
+   
+    filter: invert(1) brightness(1.5) hue-rotate(180deg);
+    opacity: 0.07; 
+}
+
+
+body.dark-mode .hero, 
+body.dark-mode .sobre-hero,
+body.dark-mode .depoimentos-hero {
+   
+    background: linear-gradient(180deg, rgba(27,30,54,0) 0%, #08090f 100%),
+                radial-gradient(circle at center, #1b2036 0%, #050508 100%);
+}
