@@ -401,7 +401,7 @@ nav a:not(.btn-contato):focus {
         padding: 0;
     }
     
-    /* Links mais limpos */
+
     .nav-list a:not(.btn-contato) {
         display: block;
         padding: 16px 0;
@@ -418,18 +418,15 @@ nav a:not(.btn-contato):focus {
         padding-left: 8px;
     }
     
-    /* Remover decorações extras */
     .nav-list a:not(.btn-contato)::after {
         display: none;
     }
     
-    /* Botão de contato minimalista */
-    .btn-contato-wrapper {
+   .btn-contato-wrapper {
         margin-top: 25px;
         padding-top: 20px;
         border-top: 1px solid rgba(186, 167, 153, 0.15);
     }
-    
     .btn-contato {
         width: 100%;
         padding: 16px;
@@ -440,14 +437,22 @@ nav a:not(.btn-contato):focus {
         border: 1.5px solid var(--bege);
         color: var(--bege);
         transition: all 0.2s ease;
+        font-weight: 600; 
     }
-    
+    body:not(.dark-mode) .btn-contato {
+        color: var(--bege-escuro); 
+        border-color: var(--bege-escuro);
+    }
     .btn-contato:hover {
         background: var(--bege);
         color: var(--branco);
+    }  body:not(.dark-mode) .btn-contato:hover {
+        background: var(--bege-escuro);
+        border-color: var(--bege-escuro);
+        color: var(--branco);
     }
     
-    /* Tema mais discreto */
+
     .theme-wrapper {
         margin-top: 20px;
         padding-top: 20px;
@@ -470,7 +475,7 @@ nav a:not(.btn-contato):focus {
         border-color: var(--bege);
     }
     
-    /* Overlay para fechar menu */
+  
     .nav-overlay {
         position: fixed;
         top: 0;
@@ -498,7 +503,6 @@ nav a:not(.btn-contato):focus {
         padding: 12px 20px;
     }
     
-    /* Ícone hamburger minimalista */
     .mobile-btn .bar {
         display: block;
         width: 24px;
