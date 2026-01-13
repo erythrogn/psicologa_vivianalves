@@ -356,124 +356,194 @@ nav a:not(.btn-contato):focus {
     opacity: 1;
 }
 
-/* Media Query Mobile */
+
 @media (max-width: 768px) {
     .header-actions {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 12px;
     }
     
     .mobile-btn {
         display: block;
+        background: none;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        z-index: 1000;
     }
     
+    /* Menu lateral simplificado */
     .nav-list {
         position: fixed;
-        top: 0; right: 0;
-        width: 85%; max-width: 320px; height: 100vh;
+        top: 0;
+        right: 0;
+        width: 85%;
+        max-width: 300px;
+        height: 100vh;
         background: var(--header-bg);
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding: 100px 30px 30px;
+        padding: 80px 25px 30px;
         transform: translateX(100%);
-        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         z-index: 999;
-        gap: 0; margin: 0;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     
     .nav-list.active {
         transform: translateX(0);
     }
     
-    .nav-list li { width: 100%; margin: 0; padding: 0; }
+    .nav-list li {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
     
+    /* Links mais limpos */
     .nav-list a:not(.btn-contato) {
         display: block;
-        padding: 18px 0;
-        font-size: 1.2rem;
+        padding: 16px 0;
+        font-size: 1.1rem;
         color: var(--azul-profundo);
-        transition: all 0.3s ease;
-        border-bottom: 1px solid rgba(186, 167, 153, 0.1);
-        text-align: left;
-        font-weight: 600;
+        transition: color 0.2s ease;
+        border-bottom: 1px solid rgba(186, 167, 153, 0.08);
+        font-weight: 500;
+        letter-spacing: 0.2px;
     }
     
     .nav-list a:not(.btn-contato):hover {
         color: var(--bege);
-        padding-left: 10px;
-        background-color: transparent;
+        padding-left: 8px;
     }
     
-    .nav-list a:not(.btn-contato)::after { display: none; }
+    /* Remover decorações extras */
+    .nav-list a:not(.btn-contato)::after {
+        display: none;
+    }
     
+    /* Botão de contato minimalista */
     .btn-contato-wrapper {
-        margin-top: 30px;
+        margin-top: 25px;
         padding-top: 20px;
-        border-top: 2px solid rgba(186, 167, 153, 0.2);
+        border-top: 1px solid rgba(186, 167, 153, 0.15);
     }
     
     .btn-contato {
         width: 100%;
-        padding: 18px 30px;
-        font-size: 1.1rem;
-        border-radius: 30px;
+        padding: 16px;
+        font-size: 1rem;
+        border-radius: 8px;
         text-align: center;
-        display: block;
-        margin: 0;
+        background: transparent;
+        border: 1.5px solid var(--bege);
+        color: var(--bege);
+        transition: all 0.2s ease;
     }
     
-    .theme-wrapper {
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 2px solid rgba(186, 167, 153, 0.1);
-    }
-    
-    .theme-btn {
-        width: 100%;
-        padding: 15px;
-        font-size: 1.2rem;
-        background: var(--bege-claro);
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-    
-    .theme-btn:hover {
+    .btn-contato:hover {
         background: var(--bege);
         color: var(--branco);
     }
     
-    body.menu-open { overflow: hidden; }
+    /* Tema mais discreto */
+    .theme-wrapper {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(186, 167, 153, 0.15);
+    }
     
-    nav { padding: 15px 20px; }
+    .theme-btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 1rem;
+        background: transparent;
+        border: 1.5px solid rgba(186, 167, 153, 0.3);
+        border-radius: 8px;
+        color: var(--azul-profundo);
+        transition: all 0.2s ease;
+    }
+    
+    .theme-btn:hover {
+        background: rgba(186, 167, 153, 0.1);
+        border-color: var(--bege);
+    }
+    
+    /* Overlay para fechar menu */
+    .nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(2px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 998;
+    }
+    
+    .nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    body.menu-open {
+        overflow: hidden;
+    }
+    
+    nav {
+        padding: 12px 20px;
+    }
+    
+    /* Ícone hamburger minimalista */
+    .mobile-btn .bar {
+        display: block;
+        width: 24px;
+        height: 2px;
+        margin: 5px 0;
+        background: var(--azul-profundo);
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-btn.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .mobile-btn.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-btn.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
 }
 
+/* Acessibilidade mantida */
 .sr-only {
     position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
-    white-space: nowrap; border: 0;
+    white-space: nowrap;
+    border: 0;
 }
 
-.mobile-btn:focus, .nav-list a:focus {
-    outline: 3px solid var(--bege);
+.mobile-btn:focus,
+.nav-list a:focus {
+    outline: 2px solid var(--bege);
     outline-offset: 2px;
 }
 
-.nav-list, .nav-overlay, .mobile-btn .bar {
-    will-change: transform, opacity;
-}
-
+/* Suporte para dispositivos iOS */
 @supports (-webkit-touch-callout: none) {
     .nav-list {
-        padding-bottom: max(env(safe-area-inset-bottom), 30px);
+        padding-bottom: max(env(safe-area-inset-bottom), 20px);
         height: calc(100vh - env(safe-area-inset-top));
         top: env(safe-area-inset-top);
     }
@@ -564,7 +634,6 @@ body.dark-mode .depoimentos-hero {
     line-height: 1.2;
 }
 
-/* Força texto branco no Hero em Dark Mode */
 body.dark-mode .hero h1,
 body.dark-mode .sobre-hero h1,
 body.dark-mode .depoimentos-hero h1,
@@ -620,14 +689,14 @@ body.dark-mode .hero p {
 
 .cta-button:hover::before, .cta-button:focus::before { width: 100%; }
 
-/* Ajuste Botão Dark Mode */
+
 body.dark-mode .cta-button {
     background: linear-gradient(135deg, #7a9cc6 0%, #3f468f 100%);
     box-shadow: 0 0 20px rgba(122, 156, 198, 0.2);
     color: #ffffff !important;
 }
 
-/* Seções Gerais */
+
 #sobre { position: relative; overflow: hidden; }
 
 #sobre::before {
@@ -674,7 +743,6 @@ body.dark-mode .cta-button {
     backdrop-filter: blur(8px);
 }
 
-/* Borda Sutil no Dark Mode para Cards */
 body.dark-mode .card, 
 body.dark-mode .feature-item, 
 body.dark-mode .sobre-card, 
@@ -801,7 +869,6 @@ footer {
     transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* Footer Dark Mode Override */
 body.dark-mode footer {
     background: linear-gradient(135deg, #0f111a 0%, #000000 100%);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -885,7 +952,7 @@ footer a {
     outline: none;
 }
 
-/* Animações de Entrada */
+
 section {
     opacity: 0;
     transform: translateY(30px);
@@ -896,7 +963,7 @@ section {
 
 section.visible { opacity: 1; transform: translateY(0); }
 
-/* Scrollbar */
+
 ::-webkit-scrollbar { width: 12px; }
 ::-webkit-scrollbar-track { background: var(--azul-palido); border-radius: 6px; }
 ::-webkit-scrollbar-thumb {
@@ -908,7 +975,7 @@ section.visible { opacity: 1; transform: translateY(0); }
     background: linear-gradient(135deg, var(--azul-escuro), var(--azul-profundo));
 }
 
-/* Páginas Extras (Sobre/Depoimentos) */
+
 .sobre-page .sobre-hero, .depoimentos-page .depoimentos-hero {
     background: linear-gradient(135deg, var(--azul-claro) 0%, #9fbde9 100%);
     text-align: center;
@@ -999,7 +1066,7 @@ section.visible { opacity: 1; transform: translateY(0); }
 .sobre-card h3 { color: var(--azul-escuro); margin-bottom: 20px; font-size: 1.6rem; }
 .sobre-card p { font-size: 1.1rem; line-height: 1.7; }
 
-/* Bio Section */
+
 .bio-section { padding: 20px 0 60px; background-color: transparent; }
 .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
 .bio-foto-wrapper { margin-top: -100px; position: relative; z-index: 10; }
@@ -1101,7 +1168,7 @@ body.dark-mode .bio-blob-bg { background-color: var(--azul-escuro); opacity: 0.3
     color: var(--texto-base); margin-bottom: 25px;
 }
 
-/* Depoimentos Específicos */
+
 .depoimento-texto {
     font-size: 1.1rem; line-height: 1.7;
     color: var(--texto-base); margin-bottom: 30px;
