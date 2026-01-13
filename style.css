@@ -35,7 +35,6 @@
     --transicao-rapida: all 0.25s ease;
 }
 
-
 body.dark-mode {
     --branco: #e6e6e6;            
     --bg-site: #08090f;          
@@ -53,11 +52,12 @@ body.dark-mode {
     --sombra-media: rgba(0, 0, 0, 0.6);
     --sombra-forte: rgba(0, 0, 0, 0.8);
 }
-body.dark-mode {
 
+body.dark-mode {
     background: radial-gradient(circle at 50% 0%, #1b1e2e 0%, #050508 75%);
     background-attachment: fixed; 
 }
+
 body.dark-mode .card, 
 body.dark-mode .feature-item,
 body.dark-mode .sobre-card,
@@ -69,6 +69,7 @@ body.dark-mode .visao {
     border: 1px solid rgba(255, 255, 255, 0.06); 
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -251,7 +252,7 @@ nav a:not(.btn-contato):focus {
     transform: scale(1.1);
 }
 
-/* Botão Contato */
+/* Botão Contato - Desktop */
 .btn-contato-wrapper {
     position: relative;
     z-index: 2;
@@ -356,7 +357,6 @@ nav a:not(.btn-contato):focus {
     opacity: 1;
 }
 
-
 @media (max-width: 768px) {
     .header-actions {
         display: flex;
@@ -401,7 +401,7 @@ nav a:not(.btn-contato):focus {
         padding: 0;
     }
     
-
+    /* Links mais limpos */
     .nav-list a:not(.btn-contato) {
         display: block;
         padding: 16px 0;
@@ -418,41 +418,51 @@ nav a:not(.btn-contato):focus {
         padding-left: 8px;
     }
     
+    /* Remover decorações extras */
     .nav-list a:not(.btn-contato)::after {
         display: none;
     }
     
-   .btn-contato-wrapper {
+    /* CORREÇÃO: Botão de contato mobile com contraste adequado */
+    .btn-contato-wrapper {
         margin-top: 25px;
         padding-top: 20px;
         border-top: 1px solid rgba(186, 167, 153, 0.15);
     }
-    .btn-contato {
+    
+    .nav-list .btn-contato {
         width: 100%;
         padding: 16px;
         font-size: 1rem;
         border-radius: 8px;
         text-align: center;
         background: transparent;
-        border: 1.5px solid var(--bege);
-        color: var(--bege);
+        border: 1.5px solid var(--bege-escuro); /* Usar bege-escuro para melhor contraste */
+        color: var(--bege-escuro); /* Usar bege-escuro para melhor contraste */
         transition: all 0.2s ease;
-        font-weight: 600; 
+        font-weight: 600;
     }
-    body:not(.dark-mode) .btn-contato {
-        color: var(--bege-escuro); 
-        border-color: var(--bege-escuro);
+    
+    /* Dark mode mantém a cor original */
+    body.dark-mode .nav-list .btn-contato {
+        border-color: var(--bege);
+        color: var(--bege);
     }
-    .btn-contato:hover {
-        background: var(--bege);
-        color: var(--branco);
-    }  body:not(.dark-mode) .btn-contato:hover {
+    
+    .nav-list .btn-contato:hover {
         background: var(--bege-escuro);
         border-color: var(--bege-escuro);
         color: var(--branco);
     }
     
-
+    /* Dark mode hover */
+    body.dark-mode .nav-list .btn-contato:hover {
+        background: var(--bege);
+        border-color: var(--bege);
+        color: var(--branco);
+    }
+    
+    /* Tema mais discreto */
     .theme-wrapper {
         margin-top: 20px;
         padding-top: 20px;
@@ -475,7 +485,7 @@ nav a:not(.btn-contato):focus {
         border-color: var(--bege);
     }
     
-  
+    /* Overlay para fechar menu */
     .nav-overlay {
         position: fixed;
         top: 0;
@@ -503,6 +513,7 @@ nav a:not(.btn-contato):focus {
         padding: 12px 20px;
     }
     
+    /* Ícone hamburger minimalista */
     .mobile-btn .bar {
         display: block;
         width: 24px;
@@ -693,13 +704,11 @@ body.dark-mode .hero p {
 
 .cta-button:hover::before, .cta-button:focus::before { width: 100%; }
 
-
 body.dark-mode .cta-button {
     background: linear-gradient(135deg, #7a9cc6 0%, #3f468f 100%);
     box-shadow: 0 0 20px rgba(122, 156, 198, 0.2);
     color: #ffffff !important;
 }
-
 
 #sobre { position: relative; overflow: hidden; }
 
@@ -956,7 +965,6 @@ footer a {
     outline: none;
 }
 
-
 section {
     opacity: 0;
     transform: translateY(30px);
@@ -966,7 +974,6 @@ section {
 }
 
 section.visible { opacity: 1; transform: translateY(0); }
-
 
 ::-webkit-scrollbar { width: 12px; }
 ::-webkit-scrollbar-track { background: var(--azul-palido); border-radius: 6px; }
@@ -978,7 +985,6 @@ section.visible { opacity: 1; transform: translateY(0); }
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, var(--azul-escuro), var(--azul-profundo));
 }
-
 
 .sobre-page .sobre-hero, .depoimentos-page .depoimentos-hero {
     background: linear-gradient(135deg, var(--azul-claro) 0%, #9fbde9 100%);
@@ -1069,7 +1075,6 @@ section.visible { opacity: 1; transform: translateY(0); }
 
 .sobre-card h3 { color: var(--azul-escuro); margin-bottom: 20px; font-size: 1.6rem; }
 .sobre-card p { font-size: 1.1rem; line-height: 1.7; }
-
 
 .bio-section { padding: 20px 0 60px; background-color: transparent; }
 .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
@@ -1172,7 +1177,6 @@ body.dark-mode .bio-blob-bg { background-color: var(--azul-escuro); opacity: 0.3
     color: var(--texto-base); margin-bottom: 25px;
 }
 
-
 .depoimento-texto {
     font-size: 1.1rem; line-height: 1.7;
     color: var(--texto-base); margin-bottom: 30px;
@@ -1247,16 +1251,13 @@ body.dark-mode .bg-color {
 }
 
 body.dark-mode .bg-color::before {
-   
     filter: invert(1) brightness(1.5) hue-rotate(180deg);
     opacity: 0.07; 
 }
 
-
 body.dark-mode .hero, 
 body.dark-mode .sobre-hero,
 body.dark-mode .depoimentos-hero {
-   
     background: linear-gradient(180deg, rgba(27,30,54,0) 0%, #08090f 100%),
                 radial-gradient(circle at center, #1b2036 0%, #050508 100%);
 }
