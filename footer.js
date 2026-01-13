@@ -17,7 +17,9 @@ class FooterComponent extends HTMLElement {
         }
 
        
-        const mensagemTexto = `Olá, Viviana, ${saudacao}. Espero que esteja bem. Estou procurando por acompanhamento psicológico e gostaria de agendar uma sessão de acolhimento. Qual é a melhor forma de proceder?`;
+        const mensagemTexto = `Olá! ${saudacao}, cheguei até você pelo seu site.
+Estou buscando atendimento psicológico no momento e gostaria de saber como funciona o processo, valores e disponibilidade.
+Fico no aguardo. Obrigada(o).`;
        
         const mensagemCodificada = encodeURIComponent(mensagemTexto);
 
@@ -34,7 +36,7 @@ class FooterComponent extends HTMLElement {
                 <p class="copyright">&copy; ${anoAtual} by <a href="https://dimen-6.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Dimen6</a>.</p>
                 
                 <div class="social-links">
-                    <a href="https://wa.me/559888788357?text=${mensagemCodificada}" 
+                    <a href="https://wa.me/5594984272294?text=${mensagemCodificada}" 
                        target="_blank" 
                        rel="noopener noreferrer">
                         WhatsApp

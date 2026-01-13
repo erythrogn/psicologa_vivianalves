@@ -12,7 +12,9 @@ class HeaderComponent extends HTMLElement {
         let saudacao = (horaAtual >= 5 && horaAtual < 12) ? "bom dia" : 
                        (horaAtual >= 12 && horaAtual < 18) ? "boa tarde" : "boa noite";
 
-        const mensagemTexto = `Olá! ${saudacao} cheguei até você pelo seu site. Estou buscando atendimento psicológico no momento e gostaria de saber como funciona o processo, valores e disponibilidade. Fico no aguardo. Obrigada(o).`;
+        const mensagemTexto = `Olá! ${saudacao}, cheguei até você pelo seu site.
+Estou buscando atendimento psicológico no momento e gostaria de saber como funciona o processo, valores e disponibilidade.
+Fico no aguardo. Obrigada(o).`;
         const mensagemCodificada = encodeURIComponent(mensagemTexto);
 
         const currentTheme = localStorage.getItem('theme') || 'light';
@@ -44,7 +46,7 @@ class HeaderComponent extends HTMLElement {
                     <li><a href="sobre.html">Sobre</a></li>
                     <li><a href="depoimentos.html">Depoimentos</a></li>
                     <li class="btn-contato-wrapper">
-                        <a href="https://wa.me/559888788357?text=${mensagemCodificada}" 
+                        <a href="https://wa.me/5594984272294?text=${mensagemCodificada}" 
                            class="btn-contato"
                            target="_blank"
                            rel="noopener noreferrer">
