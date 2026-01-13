@@ -2,24 +2,22 @@ class HeaderComponent extends HTMLElement {
     constructor() {
         super();
         this.isMobileMenuOpen = false;
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+        this.handleEscapeKey = this.handleEscapeKey.bind(this);
+        this.handleResize = this.handleResize.bind(this);
     }
 
     connectedCallback() {
         const horaAtual = new Date().getHours();
-        let saudacao;
-        
-        if (horaAtual >= 5 && horaAtual < 12) {
-            saudacao = "bom dia";
-        } else if (horaAtual >= 12 && horaAtual < 18) {
-            saudacao = "boa tarde";
-        } else {
-            saudacao = "boa noite";
-        }
+        let saudacao = (horaAtual >= 5 && horaAtual < 12) ? "bom dia" : 
+                       (horaAtual >= 12 && horaAtual < 18) ? "boa tarde" : "boa noite";
 
-        const mensagemTexto = `Olá! ${saudacao} cheguei até você pelo seu site.
-Estou buscando atendimento psicológico no momento e gostaria de saber como funciona o processo, valores e disponibilidade.
-Fico no aguardo. Obrigada(o).?`;
+        const mensagemTexto = `Olá! ${saudacao} cheguei até você pelo seu site. Estou buscando atendimento psicológico no momento e gostaria de saber como funciona o processo, valores e disponibilidade. Fico no aguardo. Obrigada(o).`;
         const mensagemCodificada = encodeURIComponent(mensagemTexto);
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        const themeIcon = currentTheme === 'dark' ? '☀️' : '🌙';
+
         this.innerHTML = `
         <header>
             <nav>
@@ -31,12 +29,16 @@ Fico no aguardo. Obrigada(o).?`;
                     </div>
                 </a>
 
-                <button class="mobile-btn" aria-label="Abrir menu" aria-expanded="false">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
+                <div class="header-actions">
+                    <button class="mobile-btn" aria-label="Abrir menu" aria-expanded="false">
+                        <span class="bar bar1"></span>
+                        <span class="bar bar2"></span>
+                        <span class="bar bar3"></span>
+                        <span class="sr-only">Menu</span>
+                    </button>
+                </div>
 
+                <div class="nav-overlay"></div>
                 <ul class="nav-list">
                     <li><a href="index.html">Início</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
@@ -46,8 +48,13 @@ Fico no aguardo. Obrigada(o).?`;
                            class="btn-contato"
                            target="_blank"
                            rel="noopener noreferrer">
-                           Agendar Consulta
+                            Agendar Consulta
                         </a>
+                    </li>
+                    <li class="theme-wrapper">
+                        <button id="theme-toggle" class="theme-btn" aria-label="Alternar modo noturno">
+                            ${themeIcon}
+                        </button>
                     </li>
                 </ul>
             </nav>
@@ -55,88 +62,132 @@ Fico no aguardo. Obrigada(o).?`;
         `;
 
         this.initEvents();
+        this.initTheme();
+    }
+
+    disconnectedCallback() {
+        this.removeEventListeners();
+    }
+
+    initTheme() {
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
     }
 
     initEvents() {
         const mobileBtn = this.querySelector('.mobile-btn');
         const navList = this.querySelector('.nav-list');
-        const navLinks = this.querySelectorAll('.nav-list a');
+        const navOverlay = this.querySelector('.nav-overlay');
+        const themeToggle = this.querySelector('#theme-toggle');
 
-        const toggleMenu = () => {
-            this.isMobileMenuOpen = !this.isMobileMenuOpen;
-            navList.classList.toggle('active');
-            mobileBtn.classList.toggle('active');
-            mobileBtn.setAttribute('aria-expanded', this.isMobileMenuOpen);
-            document.body.style.overflow = this.isMobileMenuOpen ? 'hidden' : '';
+        themeToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        const toggleMenu = (open) => {
+            const shouldOpen = open !== undefined ? open : !this.isMobileMenuOpen;
+            this.isMobileMenuOpen = shouldOpen;
+            
+            navList.classList.toggle('active', shouldOpen);
+            mobileBtn.classList.toggle('active', shouldOpen);
+            if (navOverlay) navOverlay.classList.toggle('active', shouldOpen);
+            
+            mobileBtn.setAttribute('aria-expanded', shouldOpen);
+            document.body.style.overflow = shouldOpen ? 'hidden' : '';
+            
+            if (shouldOpen) {
+                this.addEventListeners();
+            } else {
+                this.removeEventListeners();
+            }
         };
 
-        mobileBtn.addEventListener('click', toggleMenu);
-        
-        mobileBtn.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleMenu();
-            }
+        mobileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu();
         });
 
-        navLinks.forEach(link => {
+        navOverlay.addEventListener('click', () => {
+            toggleMenu(false);
+        });
+
+        this.querySelectorAll('.nav-list a:not(.btn-contato)').forEach(link => {
             link.addEventListener('click', () => {
-                if (this.isMobileMenuOpen) {
-                    toggleMenu();
-                }
-            });
-            
-            link.addEventListener('mouseenter', () => {
-                if (!this.isMobileMenuOpen) {
-                    link.style.transform = 'translateY(-2px)';
-                }
-            });
-            
-            link.addEventListener('mouseleave', () => {
-                link.style.transform = '';
+                toggleMenu(false);
             });
         });
 
-        document.addEventListener('click', (e) => {
-            if (this.isMobileMenuOpen && 
-                !navList.contains(e.target) && 
-                !mobileBtn.contains(e.target)) {
-                toggleMenu();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isMobileMenuOpen) {
-                toggleMenu();
-            }
-        });
-
-        this.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                const href = link.getAttribute('href');
-                
-                if (href === '#') return;
-                
-                const targetId = href.replace('#', '');
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    e.preventDefault();
-                    
-                    if (this.isMobileMenuOpen) {
-                        toggleMenu();
-                    }
-                    
-                    const headerHeight = this.querySelector('header').offsetHeight;
-                    const targetPosition = targetElement.offsetTop - headerHeight - 20;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+        this.querySelectorAll('.nav-list .btn-contato, .nav-list .theme-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                setTimeout(() => toggleMenu(false), 300);
             });
         });
+
+        window.addEventListener('resize', this.handleResize);
+    }
+
+    addEventListeners() {
+        document.addEventListener('click', this.handleClickOutside);
+        document.addEventListener('keydown', this.handleEscapeKey);
+    }
+
+    removeEventListeners() {
+        document.removeEventListener('click', this.handleClickOutside);
+        document.removeEventListener('keydown', this.handleEscapeKey);
+    }
+
+    handleClickOutside(e) {
+        const nav = this.querySelector('nav');
+        const mobileBtn = this.querySelector('.mobile-btn');
+        
+        if (!nav.contains(e.target) && this.isMobileMenuOpen) {
+            const toggleMenu = () => {
+                this.isMobileMenuOpen = false;
+                this.querySelector('.nav-list').classList.remove('active');
+                this.querySelector('.mobile-btn').classList.remove('active');
+                const overlay = this.querySelector('.nav-overlay');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                this.removeEventListeners();
+            };
+            toggleMenu();
+        }
+    }
+
+    handleEscapeKey(e) {
+        if (e.key === 'Escape' && this.isMobileMenuOpen) {
+            const toggleMenu = () => {
+                this.isMobileMenuOpen = false;
+                this.querySelector('.nav-list').classList.remove('active');
+                this.querySelector('.mobile-btn').classList.remove('active');
+                const overlay = this.querySelector('.nav-overlay');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                this.removeEventListeners();
+            };
+            toggleMenu();
+        }
+    }
+
+    handleResize() {
+        if (window.innerWidth > 768 && this.isMobileMenuOpen) {
+            const toggleMenu = () => {
+                this.isMobileMenuOpen = false;
+                this.querySelector('.nav-list').classList.remove('active');
+                this.querySelector('.mobile-btn').classList.remove('active');
+                const overlay = this.querySelector('.nav-overlay');
+                if (overlay) overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                this.removeEventListeners();
+            };
+            toggleMenu();
+        }
     }
 }
 
