@@ -4,7 +4,7 @@ class FooterComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        // --- 1. Lógica da Saudação (Mesma do Header) ---
+    
         const horaAtual = new Date().getHours();
         let saudacao;
 
@@ -16,16 +16,14 @@ class FooterComponent extends HTMLElement {
             saudacao = "boa noite";
         }
 
-        // Mensagem personalizada
+       
         const mensagemTexto = `Olá, Viviana, ${saudacao}. Espero que esteja bem. Estou procurando por acompanhamento psicológico e gostaria de agendar uma sessão de acolhimento. Qual é a melhor forma de proceder?`;
-        
-        // Codifica para URL
+       
         const mensagemCodificada = encodeURIComponent(mensagemTexto);
 
-        // Pega o ano atual automaticamente para o Copyright
         const anoAtual = new Date().getFullYear();
 
-        // --- 2. Renderização do HTML ---
+      
         this.innerHTML = `
         <footer id="contato">
             <div class="container">
@@ -36,7 +34,7 @@ class FooterComponent extends HTMLElement {
                 <p class="copyright">&copy; ${anoAtual} by Dimen_6.</p>
                 
                 <div class="social-links">
-                    <a href="https://wa.me/5594984272294?text=${mensagemCodificada}" 
+                    <a href="https://wa.me/559888788357?text=${mensagemCodificada}" 
                        target="_blank" 
                        rel="noopener noreferrer">
                        WhatsApp
